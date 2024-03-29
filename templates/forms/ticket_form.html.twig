@@ -1,4 +1,5 @@
-{{ form_start(form) }}
+<div class="portal-form mt-4">
+    {{ form_start(form) }}
     <div class="form-errors">
         {{ form_errors(form) }}
     </div>
@@ -12,18 +13,24 @@
         </div>
         <div class="avatar-selector-wrapper">
             <a href="#" class="btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#avatarModal">
-                Select avatar...
+                Select your avatar...
             </a>
             <div id="avatar-selector" class="thumbnail-selector">
                 {% for avatar in avatars %}
-                {% if loop.index0 == 0 %}
-                {% set avatar_class = "avatar-selection active" %}
-                {% else %}
-                {% set avatar_class = "avatar-selection hide" %}
-                {% endif %}
+                    {% if loop.index0 == 0 %}
+                        {% set avatar_class = "avatar-selection active" %}
+                    {% else %}
+                        {% set avatar_class = "avatar-selection hide" %}
+                    {% endif %}
                 
                 <div id="{{ 'avatar_selection_' ~ avatar|replace({'.jpg': ''}) }}" class="{{ avatar_class }}">
-                    <img width="65" height="65" src="{{ asset('build/images/avatars/' ~ avatar) }}" alt="avatar icon">
+                    <img 
+                        class="avatar-img"
+                        width="65"
+                        height="65"
+                        src="{{ asset('build/images/avatars/' ~ avatar) }}"
+                        alt="avatar icon"
+                    >
                 </div>
                 {% endfor %}
             </div>
@@ -44,6 +51,7 @@
     </div>
     <div class="row">
         {{ form_end(form) }}
-    </div>
+    </div>    
+</div>
 
 {% include "includes/avatar_modal.html.twig" %}

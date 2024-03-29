@@ -1,7 +1,17 @@
 {% extends "base.html.twig" %}
 
+{% block nav %}
+    {% include "includes/portal_nav.html.twig" %}
+{% endblock %}
+
 {% block body %}
+    {% include "includes/portal_banner.html.twig" %}
     <div class="container mt-4">
-        {% include "forms/ticket_form.html.twig" %}
+        <div class="portal-body">
+            <p>Welcome! Raise a goodbye ticket with the form below to let John know that even though
+                he may be gone... he still has work to do.
+            </p>
+            {% include "forms/ticket_form.html.twig" %}
+        </div>
     </div>
 {% endblock %}

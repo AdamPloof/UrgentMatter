@@ -13,7 +13,13 @@
                             class="avatar-option"
                             data-bs-dismiss="modal"
                         >
-                            <img width="65" height="65" src="{{ asset('build/images/avatars/' ~ avatar) }}" alt="avatar icon">
+                            <img 
+                                class="avatar-img"
+                                width="65"
+                                height="65" 
+                                src="{{ asset('build/images/avatars/' ~ avatar) }}"
+                                alt="avatar icon"
+                            >
                         </div>
                     {% endfor %}
                 </div>
