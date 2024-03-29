@@ -1,0 +1,38 @@
+// Avatar selector
+.avatar-selector-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+
+    img {
+        border-radius: 50%;
+    }
+}
+
+.avatar-picker {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.avatar-option {
+    padding: .4rem;
+    width: min-content;
+    border-radius: 50%;
+    border: 2px solid transparent;
+
+    &:hover {
+        cursor: pointer;
+        border: 2px solid rgb(254, 119, 213);
+    }
+
+    img {
+        border-radius: 50%;
+    }
+}

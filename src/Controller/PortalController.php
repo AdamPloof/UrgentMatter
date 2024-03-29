@@ -33,10 +33,15 @@ class PortalController extends AbstractController {
             $ticket->setSubmitted($submitted);
             $em->persist($ticket);
             $em->flush();
+
+            return $this->redirectToRoute('index');
         }
+
+        $avatars = $this->getParameter('app.avatars');
 
         return $this->render('portal.html.twig', [
             'form' => $form,
+            'avatars' => $avatars
         ]);
     }
 }

@@ -1,0 +1,26 @@
+<div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="avatarModalLabel">Select avatar</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="avatar-picker" class="avatar-picker">
+                    {% for avatar in avatars %}
+                        <div 
+                            id="{{ 'avatar_option_' ~ avatar|replace({'.jpg': ''}) }}"
+                            class="avatar-option"
+                            data-bs-dismiss="modal"
+                        >
+                            <img width="65" height="65" src="{{ asset('build/images/avatars/' ~ avatar) }}" alt="avatar icon">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

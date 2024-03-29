@@ -7,6 +7,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,21 +32,16 @@ class TicketType extends AbstractType
             ])
             ->add('subject', TextType::class, [
                 'label' => 'Subject',
-                'help' => 'A farewell message for John',
             ])
             ->add('body',  TextareaType::class, [
                 'label' => 'Description',
+                'help' => 'A farewell message for John',
                 'attr' => [
                     'rows' => 8,
                 ],
             ])
-            ->add('avatar', ChoiceType::class, [
-                'label' => 'Avatar',
-                'choices' => [
-                    'default.jpg' => 'Default',
-                    'printer.jpg' => 'Printer',
-                    'phone.jpg' => 'Phone',
-                ]
+            ->add('avatar', HiddenType::class, [
+                'empty_data' => 'default.jpg',
             ])
             ->add('urgency', EntityType::class, [
                 'label' => 'Urgency',

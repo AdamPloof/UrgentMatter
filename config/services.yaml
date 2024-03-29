@@ -4,7 +4,17 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    # TODO: Make this a dict of avatars with the keys being the path and the value being alt text 
+    app.avatars:
+        - 'storm_trooper.jpg'
+        - 'carl.jpg'
+        - 'give_him_the_stick.jpg'
+        - 'meatwad.jpg'
+        - 'bridge_four.jpg'
+        - 'mandalorian.jpg'
+        - 'michael_bolton.jpg'
+        - 'destiny.jpg'
+        - 'krusty.jpg'
 services:
     # default configuration for services in *this* file
     _defaults:

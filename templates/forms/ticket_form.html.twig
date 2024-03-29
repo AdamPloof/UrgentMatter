@@ -10,13 +10,31 @@
         <div class="col">
             {{ form_row(form.email) }}
         </div>
-        <div class="col">
-            {{ form_row(form.avatar) }}
+        <div class="avatar-selector-wrapper">
+            <a href="#" class="btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#avatarModal">
+                Select avatar...
+            </a>
+            <div id="avatar-selector" class="thumbnail-selector">
+                {% for avatar in avatars %}
+                {% if loop.index0 == 0 %}
+                {% set avatar_class = "avatar-selection active" %}
+                {% else %}
+                {% set avatar_class = "avatar-selection hide" %}
+                {% endif %}
+                
+                <div id="{{ 'avatar_selection_' ~ avatar|replace({'.jpg': ''}) }}" class="{{ avatar_class }}">
+                    <img width="65" height="65" src="{{ asset('build/images/avatars/' ~ avatar) }}" alt="avatar icon">
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col col-8">
             {{ form_row(form.subject) }}
+        </div>
+        <div class="col col-4">
+            {{ form_row(form.urgency) }}
         </div>
     </div>
     <div class="row">
@@ -25,10 +43,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            {{ form_row(form.urgency) }}
-        </div>
-    </div>
-    <div class="row">
         {{ form_end(form) }}
     </div>
+
+{% include "includes/avatar_modal.html.twig" %}
