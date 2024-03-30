@@ -36,6 +36,15 @@ class Ticket
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $submitted = null;
 
+    // Note: don't actually use this to set IDs of Tickets that will
+    // be persisted to the database. This is just so that we can
+    // set the ID of faux Tickets.
+    public function setId(int $id): static {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

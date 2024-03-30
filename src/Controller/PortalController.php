@@ -34,7 +34,9 @@ class PortalController extends AbstractController {
             $em->persist($ticket);
             $em->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('ticket_submitted', [
+                'ticketId' => $ticket->getId()
+            ]);
         }
 
         $avatars = $this->getParameter('app.avatars');
@@ -42,6 +44,21 @@ class PortalController extends AbstractController {
         return $this->render('portal.html.twig', [
             'form' => $form,
             'avatars' => $avatars
+        ]);
+    }
+
+    #[Route('/portal/ticket-submitted/{ticketId}', name: 'ticket_submitted', requirements: ['ticketId' => '\d+'])]
+    public function ticketSubmitted(EntityManagerInterface $em, int $ticketId): Response {
+        /** @var Ticket $ticket */
+        $ticket = $em->getRepository(Ticket::class)->find($ticketId);
+        if (!$ticket) {
+            $this->addFlash('danger', 'There was an error submiting your ticket. Sorry, IT problems!');
+            $this->redirectToRoute('portal');
+        }
+
+        return $this->render('ticket_submitted.html.twig', [
+            'ticketId' => $ticket->getId(),
+            'submitter' => $ticket->getSubmitter()
         ]);
     }
 }
