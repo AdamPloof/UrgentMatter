@@ -1,17 +1,17 @@
 import React, { StrictMode } from "react";
 import { createRoot } from 'react-dom/client'
-import TicketPortal from "./portal/TicketPortal";
+import ServiceBoard from "./serviceBoard/ServiceBoard";
 
 function main() {
-    const appContainer = document.getElementById('app-container');
-    if (!appContainer) {
+    const serviceBoardContainer = document.getElementById('service-board-component');
+    if (!serviceBoardContainer) {
         return;
     }
 
-    const root = createRoot(appContainer);
+    const root = createRoot(serviceBoardContainer);
     root.render(
         <StrictMode>
-            <TicketPortal />
+            <ServiceBoard />
         </StrictMode>
     );
 }

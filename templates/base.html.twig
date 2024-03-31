@@ -2,7 +2,15 @@
 <html lang="en" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Urgent Matter{% endblock %}</title>
+        <title>
+            {% block title %}
+                {% if title is defined %}
+                    {{ title }}
+                {% else %}
+                    Urgent Matter
+                {% endif %}
+            {% endblock %}
+        </title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}

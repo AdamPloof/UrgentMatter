@@ -51,12 +51,18 @@ class TicketGenerator {
     public function buildTicket(): Ticket {
         $ticket = new Ticket();
         $ticket->setId($this->currentId);
+
+        $fauxData = $this->fauxTicketData[array_rand($this->fauxTicketData)];
         $ticket->setSubmitted($this->makeSubmitted());
-        $ticket->setSubmitter($this->makeSubmitter());
-        $ticket->setEmail($this->makeEmail());
+        $ticket->setSubmitter($fauxData['submitter']);
+        $ticket->setEmail($fauxData['email']);
         $ticket->setAvatar($this->makeAvatar());
-        $ticket->setSubject($this->makeSubject());
-        $ticket->setBody($this->makeBody());
+        // $ticket->setSubject($fauxData['subject']);
+        // $ticket->setBody($fauxData['body']);
+
+        $ticket->setSubject("Test subject IT request");
+        $ticket->setBody("Test body my printer is not printing server is down.");
+
         $ticket->setUrgency($this->makeUrgency());
 
         $this->currentId++;
@@ -72,24 +78,8 @@ class TicketGenerator {
         return $submitted;
     }
 
-    public function makeSubmitter(): string {
-        return $this->fauxTicketData[array_rand($this->fauxTicketData)]['submitter'];
-    }
-
-    public function makeEmail(): string {
-        return $this->fauxTicketData[array_rand($this->fauxTicketData)]['email'];
-    }
-
     public function makeAvatar(): string {
         return $this->avatars[array_rand($this->avatars)];
-    }
-
-    public function makeSubject(): string {
-        return $this->fauxTicketData[array_rand($this->fauxTicketData)]['subject'];
-    }
-
-    public function makeBody(): string {
-        return $this->fauxTicketData[array_rand($this->fauxTicketData)]['body'];
     }
 
     public function makeUrgency(): Urgency {

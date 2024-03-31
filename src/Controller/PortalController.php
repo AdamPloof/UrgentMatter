@@ -35,6 +35,7 @@ class PortalController extends AbstractController {
             $em->flush();
 
             return $this->redirectToRoute('ticket_submitted', [
+                'title' => 'Urgent Matter - Portal',
                 'ticketId' => $ticket->getId()
             ]);
         }
@@ -47,6 +48,8 @@ class PortalController extends AbstractController {
         ]);
     }
 
+    // TODO: people shouldn't be able to navigate to this unless they submitted the ticket.
+    //       Maybe check that there's a cookie set?
     #[Route('/portal/ticket-submitted/{ticketId}', name: 'ticket_submitted', requirements: ['ticketId' => '\d+'])]
     public function ticketSubmitted(EntityManagerInterface $em, int $ticketId): Response {
         /** @var Ticket $ticket */
@@ -57,6 +60,7 @@ class PortalController extends AbstractController {
         }
 
         return $this->render('ticket_submitted.html.twig', [
+            'title' => 'Urgent Matter - Ticket Submitted',
             'ticketId' => $ticket->getId(),
             'submitter' => $ticket->getSubmitter()
         ]);
