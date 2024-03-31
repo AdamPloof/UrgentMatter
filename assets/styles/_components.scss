@@ -62,3 +62,64 @@ img.avatar-img {
     flex-direction: row;
     width: fit-content;
 }
+
+// Service board
+.service-board-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.queue-container {
+    width: 100%;
+    padding: 2rem;
+}
+
+.queue-title {
+    h3 {
+        color: $info-lightest;
+    }
+}
+
+.queue-header-breadcrumbs {
+    ul {
+        list-style: none;
+        list-style-type: none;
+        padding-left: 0;
+
+        li {
+            padding-left: .5rem;
+            display: inline-block;
+
+            a {
+                color: $grey;
+                text-decoration: none;
+
+                &:hover {
+                    color: $info-light;
+                }
+            }
+
+            &:first-of-type {
+                padding-left: 0;
+            }
+
+            &::after {
+                content: "/";
+                padding-left: .5rem;
+            }
+
+            &:last-of-type::after {
+                content: none;
+            }
+        }
+    }
+}
+
+table.queue-table {
+    width: 100%;
+
+    thead {
+        border-bottom: $border-main;
+    }
+}

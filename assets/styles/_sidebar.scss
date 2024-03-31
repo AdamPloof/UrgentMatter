@@ -1,0 +1,106 @@
+@import "variables";
+
+@mixin sidebar-title-padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+@mixin sidebar-item-padding {
+    padding-left: 3rem;
+    padding-right: 2rem;
+}
+
+.service-board-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-right: $border-main;
+
+    .sb-header {
+        @include sidebar-title-padding();
+        padding-top: .75rem;
+        padding-bottom: .75rem;;
+        border-bottom: $border-main;
+        display: flex;
+        flex-direction: row;
+
+        .header-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: .25rem;
+        }
+
+        .header-title {
+            h3 {
+                font-size: 1.25rem;
+                margin-bottom: 0;
+            }
+        }
+
+        .header-description {
+            color: $grey-light;
+        }
+    }
+
+    .sb-section {
+        width: 100%;
+        padding-bottom: .5rem;
+        padding-top: .5rem;
+
+        .section-title {
+            text-transform: uppercase;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            @include sidebar-title-padding();
+
+            h5 {
+                font-weight: 200;
+                font-size: 1.1rem;
+                margin-bottom: 0;
+            }
+        }
+
+        .sb-item {
+            @include sidebar-item-padding();
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            display: flex;
+            flex-direction: row;
+
+            .sb-icon {
+                margin-right: .25rem;
+            }
+
+            a {
+                color: $grey-lighter;
+                text-decoration: none;
+            }
+
+            &:hover {
+                background-color: $grey-darkerer;
+
+                a {
+                    color: $info-light;
+                }
+            }
+        }
+
+        .sb-item.active {
+            background-color: $grey-darker;
+            
+            a {
+                pointer-events: none;
+                cursor: default;
+                color: $info-lighter;
+            }
+        }
+
+        .sb-item-expandable {
+            ul {
+                list-style: none;
+            }
+        }
+    }
+}

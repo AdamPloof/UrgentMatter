@@ -5,6 +5,10 @@ import {
     GENERATE_TICKETS
 } from "../../includes/paths";
 
+import Nav from "./Nav";
+import Sidebar from "./Sidebar";
+import Queue from "./Queue";
+
 export default function ServiceBoard() {
     const [tickets, setTickets] = useState([]);
     const [fauxTickets, setFauxTickets] = useState([]);
@@ -69,30 +73,12 @@ export default function ServiceBoard() {
     };
 
     return (
-        <div className="service-board-container">
-            <h1>Service Board - Testing</h1>
-
-            <div className="container">
-                <h2>Tickets</h2>
-                <ul>
-                    {tickets.map(t => {
-                        return (
-                            <li>{t.subject}</li>
-                        );
-                    })}
-                </ul>
+        <React.Fragment>
+            <Nav />
+            <div className="service-board-layout">
+                <Sidebar />
+                <Queue />
             </div>
-
-            <div className="container">
-                <h2>Faux Tickets</h2>
-                <ul>
-                    {fauxTickets.map(t => {
-                        return (
-                            <li>{t.subject}</li>
-                        );
-                    })}
-                </ul>
-            </div>
-        </div>
+        </React.Fragment>
     );
 }
