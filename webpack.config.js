@@ -6,6 +6,19 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
+Encore.configureDefinePlugin(options => {
+    options['process.env'] = options['process.env'] || {};
+    if (Encore.isProduction()) {
+        // in case app is deployed via symlink
+        // options['process.env'].BASE_URL = JSON.stringify('/urgen-matter/');
+        options['process.env'].ORIGIN = JSON.stringify('https://urgentmatter');
+        options['process.env'].BASE_URL = JSON.stringify('/');
+    } else {
+        options['process.env'].ORIGIN = JSON.stringify('http://127.0.0.1:8000');
+        options['process.env'].BASE_URL = JSON.stringify('/');
+    }
+});
+
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
