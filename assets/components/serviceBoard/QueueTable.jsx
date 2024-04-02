@@ -1,7 +1,6 @@
 import React from "react";
 
 import TableLoader from "./TableLoader";
-import { ICONS } from "../../includes/paths";
 import { 
     TICKET_TYPES,
     TICKET_STATUS,
@@ -9,7 +8,7 @@ import {
 } from "../../includes/consts";
 
 export default function QueueTable(props) {
-    if (props.loadingTickets) {
+    if (props.loading) {
         return (
             <TableLoader />
         );
@@ -58,7 +57,7 @@ function ticketRow(ticket) {
             </td>
             <td>{ticketType(TICKET_TYPES.BILL_GATES)}</td>
             <td>{ticketKey(ticket.id)}</td>
-            <td>{ticket.subject}</td>
+            <td>{ticketSummary(ticket)}</td>
             <td>{ticket.submitter}</td>
             <td>{assignee(ticket)}</td>
             <td>{status()}</td>
@@ -66,6 +65,18 @@ function ticketRow(ticket) {
             <td>{ticket.urgency.description}</td>
             <td>{sla()}</td>
         </tr>
+    );
+}
+
+/**
+ * TODO: This should link to the ticket view (not yet created)
+ * the base path for the ticket should come from paths.js
+ * 
+ * @param {Element} ticket 
+ */
+function ticketSummary(ticket) {
+    return (
+        <a class="queue-link" href="#">{ticket.subject}</a>
     );
 }
 

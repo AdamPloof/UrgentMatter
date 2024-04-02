@@ -118,10 +118,22 @@ img.avatar-img {
 
 table.queue-table {
     width: 100%;
-    font-size: .95em;
-    font-weight: 200;
+    font-size: 95%;
 
     thead {
         border-bottom: $border-main;
+    }
+
+    td {
+        vertical-align: middle;
+    }
+
+    a.queue-link {
+        text-decoration: none;;
+        color: $info-lighter;
+
+        &:hover {
+            color: $info;
+        }
     }
 }

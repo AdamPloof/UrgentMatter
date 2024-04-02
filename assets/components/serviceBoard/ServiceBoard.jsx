@@ -85,7 +85,7 @@ export default function ServiceBoard() {
                 <Sidebar />
                 <Queue
                     tickets={tickets}
-                    loadingTickets={loadingTickets}
+                    loading={loadingTickets}
                     error={error}
                 />
             </div>
