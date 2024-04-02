@@ -1,11 +1,33 @@
 import React from "react";
 
+import TableLoader from "./TableLoader";
+import { ICONS } from "../../includes/paths";
+import { 
+    TICKET_TYPES,
+    TICKET_STATUS,
+    TICKET_SLA
+} from "../../includes/consts";
+
 export default function QueueTable(props) {
+    if (props.loadingTickets) {
+        return (
+            <TableLoader />
+        );
+    }
+
     return (
         <table className="table table-borderless queue-table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">
+                        <input 
+                            className="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="queueSelectAll"
+                        />
+                    </th>
+                    <th scope="col">T</th>
                     <th scope="col">Key</th>
                     <th scope="col">Summary</th>
                     <th scope="col">Reporter</th>
@@ -16,41 +38,78 @@ export default function QueueTable(props) {
                     <th scope="col">SLA</th>
                 </tr>
             </thead>
-        <tbody>
-            <tr>
-                <th scope="row">ASD</th>
-                <td>UM-123</td>
-                <td>Can't SE OR DT?!</td>
-                <td>Mr Purdy</td>
-                <td>JBergeron</td>
-                <td>Ready</td>
-                <td>12/20/1984</td>
-                <td>Very urgent</td>
-                <td>Breached</td>
-            </tr>
-            <tr>
-                <th scope="row">ASD</th>
-                <td>UM-124</td>
-                <td>PRinter not printering</td>
-                <td>JLo</td>
-                <td>Jbergeron</td>
-                <td>Ignored</td>
-                <td>12/24/1985</td>
-                <td>Not very</td>
-                <td>Good</td>
-            </tr>
-            <tr>
-                <th scope="row">ASD</th>
-                <td>UM-125</td>
-                <td>Order more pens</td>
-                <td>Jairo</td>
-                <td>Jbergeron</td>
-                <td>On fire</td>
-                <td>12/28/1998</td>
-                <td>Over the top urgent</td>
-                <td>Breached</td>
-            </tr>
-        </tbody>
+            <tbody>
+                {props.tickets.map(t => ticketRow(t))}
+            </tbody>
         </table>
     );
+}
+
+function ticketRow(ticket) {
+    return (
+        <tr key={`ticketRow${ticket.id}`}>
+            <td>
+                <input 
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id={`queueSelect${ticket.id}`}
+                />
+            </td>
+            <td>{ticketType(TICKET_TYPES.BILL_GATES)}</td>
+            <td>{ticketKey(ticket.id)}</td>
+            <td>{ticket.subject}</td>
+            <td>{ticket.submitter}</td>
+            <td>{assignee(ticket)}</td>
+            <td>{status()}</td>
+            <td>{ticket.submitted}</td>
+            <td>{ticket.urgency.description}</td>
+            <td>{sla()}</td>
+        </tr>
+    );
+}
+
+/**
+ * ticketType, status and SLA can effectively be randomly selected. It would probably look more natural though
+ * if we have certain types, statuses and SLAs that are more common.
+ * 
+ * TODO: select quasi-random ticketType, status and SLA.
+ * 
+ * @param {string} ticketType must be one of the values of the TICKET_TYPE const
+ */
+function ticketType(ticketType) {
+    return <img className="ticket-type-icon" src={ticketType.src} alt={ticketType.altText} />
+}
+
+/**
+ * @return {string}
+ */
+function ticketKey(ticketId) {
+    return `UM-${ticketId}`;
+}
+
+/**
+ * 
+ * @param {Object} ticket 
+ * @return {string} basically JBergeron for real tickets a random person or unassigned if faux ticket
+ */
+function assignee(ticket) {
+    return 'JBergeron';
+}
+
+/**
+ * TODO: for now status and sla are just returning the description.
+ * eventually these should probably return dom elements
+ * 
+ * @return {string} should be one of the TICKET_STATUS const values
+ */
+function status() {
+    return TICKET_STATUS.IGNORED.description;
+}
+
+/**
+ * @return {string} should be one of the TICKET_SLA const values
+ */
+function sla() {
+    return TICKET_SLA.BREACHED.description;
 }

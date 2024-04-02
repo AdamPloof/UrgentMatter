@@ -6,7 +6,9 @@ export default function Queue(props) {
     return (
         <div className="queue-container">
             <QueueHeader />
-            <QueueTable />
+            <QueueTable
+                tickets={props.tickets}
+            />
         </div>
     );
 }

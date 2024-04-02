@@ -1,12 +1,12 @@
 @import "variables";
 
 @mixin sidebar-title-padding {
-    padding-left: 2rem;
+    padding-left: 1.25rem;
     padding-right: 2rem;
 }
 
 @mixin sidebar-item-padding {
-    padding-left: 3rem;
+    padding-left: 1.75rem;
     padding-right: 2rem;
 }
 
@@ -41,6 +41,7 @@
 
         .header-description {
             color: $grey-light;
+            font-size: 95%;
         }
     }
 
@@ -64,6 +65,7 @@
 
         .sb-item {
             @include sidebar-item-padding();
+            font-size: 90%;
             padding-top: .5rem;
             padding-bottom: .5rem;
             display: flex;

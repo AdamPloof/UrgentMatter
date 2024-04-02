@@ -20,7 +20,7 @@ final class Version20240328015112 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $urgencies = [
-            ['description' => 'Regular'],
+            ['description' => 'Utterly inconsequential'],
             ['description' => 'Urgent'],
             ['description' => 'Really urgent'],
             ['description' => 'Extremely urgent'],

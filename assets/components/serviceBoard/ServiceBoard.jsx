@@ -11,8 +11,13 @@ import Queue from "./Queue";
 
 export default function ServiceBoard() {
     const [tickets, setTickets] = useState([]);
+
+    // TODO: once the tickets are fetched, they should just be const
+    // probable useRef for these. tickets is the only thing that really needs
+    // to have changeable state
     const [fauxTickets, setFauxTickets] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loadingTickets, setLoadingTickets] = useState(true);
+    const [loadingFauxTickets, setLoadingFauxTickets] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -25,7 +30,9 @@ export default function ServiceBoard() {
         try {
             const tickets = await fetchData(url);
             setTickets(tickets);
+            setLoadingTickets(false);
         } catch (e) {
+            setError('Error: could not fetch ticket data');
             console.error(e);
         }
     };
@@ -35,13 +42,14 @@ export default function ServiceBoard() {
         try {
             const fauxTickets = await fetchData(url);
             setFauxTickets(fauxTickets);
+            setLoadingFauxTickets(false);
         } catch (e) {
+            setError('Error: could not fetch ticket data');
             console.error(e);
         }
     };
 
     const fetchData = async (url) => {
-        setLoading(true);
         const params = {
             method: 'GET',
             headers: {
@@ -60,8 +68,6 @@ export default function ServiceBoard() {
         } catch (e) {
             err = e;
         } finally {
-            setLoading(false);
-
             if (data) {
                 return data;
             } else if (err !== null) {
@@ -77,7 +83,11 @@ export default function ServiceBoard() {
             <Nav />
             <div className="service-board-layout">
                 <Sidebar />
-                <Queue />
+                <Queue
+                    tickets={tickets}
+                    loadingTickets={loadingTickets}
+                    error={error}
+                />
             </div>
         </React.Fragment>
     );
