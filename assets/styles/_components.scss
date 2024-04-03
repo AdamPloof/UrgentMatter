@@ -23,7 +23,8 @@
 }
 
 // Avatar selector
-img.avatar-img {
+img.avatar-img,
+img.agent-img {
     border-radius: 50%;
 }
 
@@ -137,3 +138,41 @@ table.queue-table {
         }
     }
 }
+
+.agent-select-td {
+    position: relative;
+}
+
+.agent-select {
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    width: 100%;
+    top: 10px;
+
+    &.active {
+        width: 90%;
+        position: absolute;
+        z-index: 99;
+        background-color: $grey-darkerer;
+    }
+
+    .agent-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        padding: .5rem .2rem;
+        border-radius: .5rem;
+    
+        &:hover {
+            background-color: $grey-darker;
+        }
+    
+        .agent-name {
+            display: inline-flex;
+            align-items: center;
+        }
+    }
+}
+

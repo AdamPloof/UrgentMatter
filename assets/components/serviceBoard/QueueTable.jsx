@@ -1,6 +1,7 @@
 import React from "react";
 
 import TableLoader from "./TableLoader";
+import AgentSelect from "./AgentSelect";
 import { 
     TICKET_TYPES,
     TICKET_STATUS,
@@ -59,7 +60,7 @@ function ticketRow(ticket) {
             <td>{ticketKey(ticket.id)}</td>
             <td>{ticketSummary(ticket)}</td>
             <td>{ticket.submitter}</td>
-            <td>{assignee(ticket)}</td>
+            <td className="agent-select-td"><AgentSelect ticketId={ticket.id} /></td>
             <td>{status()}</td>
             <td>{ticket.submitted}</td>
             <td>{ticket.urgency.description}</td>
@@ -76,7 +77,7 @@ function ticketRow(ticket) {
  */
 function ticketSummary(ticket) {
     return (
-        <a class="queue-link" href="#">{ticket.subject}</a>
+        <a className="queue-link" href="#">{ticket.subject}</a>
     );
 }
 
@@ -97,15 +98,6 @@ function ticketType(ticketType) {
  */
 function ticketKey(ticketId) {
     return `UM-${ticketId}`;
-}
-
-/**
- * 
- * @param {Object} ticket 
- * @return {string} basically JBergeron for real tickets a random person or unassigned if faux ticket
- */
-function assignee(ticket) {
-    return 'JBergeron';
 }
 
 /**
