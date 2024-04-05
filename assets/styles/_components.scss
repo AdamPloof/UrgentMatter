@@ -162,8 +162,12 @@ table.queue-table {
         flex-direction: row;
         align-items: center;
         cursor: pointer;
-        padding: .5rem .2rem;
+        padding: .2rem .2rem;
         border-radius: .5rem;
+
+        &.selected {
+            background-color: $grey-darkest;
+        }
     
         &:hover {
             background-color: $grey-darker;
