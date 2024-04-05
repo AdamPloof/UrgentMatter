@@ -1,12 +1,12 @@
 import React from "react";
 
-import TableLoader from "./TableLoader";
+import TableLoader from "../TableLoader";
 import AgentSelect from "./AgentSelect";
+import StatusSelect from "./StatusSelect";
 import { 
     TICKET_TYPES,
-    TICKET_STATUS,
     TICKET_SLA
-} from "../../includes/consts";
+} from "../../../includes/consts";
 
 export default function QueueTable(props) {
     if (props.loading) {
@@ -56,12 +56,12 @@ function ticketRow(ticket) {
                     id={`queueSelect${ticket.id}`}
                 />
             </td>
-            <td>{ticketType(TICKET_TYPES.BILL_GATES)}</td>
+            <td>{ticketType(TICKET_TYPES.CRYO_CHAMBER)}</td>
             <td>{ticketKey(ticket.id)}</td>
             <td>{ticketSummary(ticket)}</td>
             <td>{ticket.submitter}</td>
-            <td className="agent-select-td"><AgentSelect ticketId={ticket.id} /></td>
-            <td>{status()}</td>
+            <td className="select-td"><AgentSelect ticketId={ticket.id} /></td>
+            <td className="select-td"><StatusSelect /></td>
             <td>{ticket.submitted}</td>
             <td>{ticket.urgency.description}</td>
             <td>{sla()}</td>
@@ -84,13 +84,11 @@ function ticketSummary(ticket) {
 /**
  * ticketType, status and SLA can effectively be randomly selected. It would probably look more natural though
  * if we have certain types, statuses and SLAs that are more common.
- * 
- * TODO: select quasi-random ticketType, status and SLA.
- * 
- * @param {string} ticketType must be one of the values of the TICKET_TYPE const
  */
-function ticketType(ticketType) {
-    return <img className="ticket-type-icon" src={ticketType.src} alt={ticketType.altText} />
+function ticketType() {
+    const ticketTypes = Object.values(TICKET_TYPES);
+    const ticketType = ticketTypes[Math.floor(Math.random() * ticketTypes.length)];
+    return <img width="20" className="ticket-type-icon" src={ticketType.src} alt={ticketType.altText} />
 }
 
 /**
@@ -98,16 +96,6 @@ function ticketType(ticketType) {
  */
 function ticketKey(ticketId) {
     return `UM-${ticketId}`;
-}
-
-/**
- * TODO: for now status and sla are just returning the description.
- * eventually these should probably return dom elements
- * 
- * @return {string} should be one of the TICKET_STATUS const values
- */
-function status() {
-    return TICKET_STATUS.IGNORED.description;
 }
 
 /**

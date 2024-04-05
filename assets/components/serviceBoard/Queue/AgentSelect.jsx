@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import { AGENTS } from "../../includes/paths";
-import { useOutsideClickListener } from '../../includes/hooks';
+import { AGENTS } from "../../../includes/paths";
+import { useOutsideClickListener } from '../../../includes/hooks';
 
 // TODO: only one agent select should be able to be active at any given time
 // also clicking outside of the selector should close it

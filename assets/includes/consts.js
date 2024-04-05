@@ -1,21 +1,17 @@
 import { ICONS } from "./paths";
 
 export const TICKET_TYPES = {
-    HALLUCINATION: {
-        altText: 'Hallucination',
-        src: ICONS + '/tt_hallucinations.svg'
+    CRYO_CHAMBER: {
+        altText: 'Ticket type: cryo chamber',
+        src: ICONS + '/tt_cryo_chamber.svg'
     },
-    NOT_MY_PROBLEM: {
-        altText: 'Not my problem',
-        src: ICONS + '/tt_not_my_problem.svg'
+    ROBOT: {
+        altText: 'Ticket type: robot',
+        src: ICONS + '/tt_robot.svg'
     },
-    BILL_GATES: {
-        altText: 'Get Bill Gates in here!',
-        src: ICONS + '/tt_bill_gates.svg'
-    },
-    SRSLY: {
-        altText: 'srsly?',
-        src: ICONS + '/tt_srsly.svg'
+    MONKEY: {
+        altText: 'Ticket type: monkey',
+        src: ICONS + '/tt_monkey.svg'
     },
 };
 
@@ -24,22 +20,44 @@ export const TICKET_TYPES = {
 export const TICKET_STATUS = {
     IGNORED: {
         description: 'Ignored',
+        className: 'status-stage-1',
+        transition: 'Ignore',
     },
     FORGOTTEN: {
         description: 'Forgotten',
+        className: 'status-stage-1',
+        transition: 'Forget',
     },
     IN_PURGATORY: {
         description: 'In Purgatory',
+        className: 'status-stage-2',
+        transition: 'Purgatorize',
     },
     WAITING_ON_USER: {
         description: 'Waiting on user lol',
+        className: 'status-stage-2',
+        transition: 'Wait on user',
+    },
+    IN_PROGRESS: {
+        description: 'Git \'r dun',
+        className: 'status-stage-2',
+        transition: 'Start',
     },
     PENDING: {
         description: 'Pending cancel',
+        className: 'status-stage-3',
+        transition: 'Prepare to cancel',
     },
-    IN_PROGRESS: {
-        description: 'In progress (of cancelling)'
-    }
+    COMPLETE: {
+        description: 'Over it',
+        className: 'status-stage-4',
+        transition: 'Done',
+    },
+    CANCELLED: {
+        description: 'Not gonna do it',
+        className: 'status-stage-5',
+        transition: 'Cancel',
+    },
 };
 
 export const TICKET_SLA = {

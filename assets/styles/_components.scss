@@ -139,11 +139,12 @@ table.queue-table {
     }
 }
 
-.agent-select-td {
+.select-td {
     position: relative;
 }
 
-.agent-select {
+.agent-select,
+.status-select {
     display: flex;
     flex-direction: column;
     border-radius: .5rem;
@@ -157,26 +158,75 @@ table.queue-table {
         background-color: $grey-darkerer;
     }
 
-    .agent-info {
+    .agent-info,
+    .status-info {
         display: flex;
         flex-direction: row;
         align-items: center;
         cursor: pointer;
-        padding: .2rem .2rem;
+        padding: .2rem .75rem;
         border-radius: .5rem;
-
-        &.selected {
-            background-color: $grey-darkest;
-        }
     
         &:hover {
             background-color: $grey-darker;
         }
     
-        .agent-name {
+        .agent-name,
+        .status-description {
             display: inline-flex;
             align-items: center;
         }
     }
 }
 
+.status-select.active {
+    .status-info {
+        border-radius: 0;
+        width: 100%;
+
+        &:first-of-type {
+            border-top-left-radius: .5rem;
+            border-top-right-radius: .5rem;
+        }
+
+        &:last-of-type {
+            border-bottom-left-radius: .5rem;
+            border-bottom-right-radius: .5rem;
+        }
+    }
+}
+
+.status-info {
+    width: fit-content;
+
+    &.selected::after {
+        display: inline-block;
+        margin-left: .255em;
+        vertical-align: .255em;
+        content: "";
+        border-top: .3em solid;
+        border-right: .3em solid transparent;
+        border-bottom: 0;
+        border-left: .3em solid transparent;
+    }
+
+    &.status-stage-1 {
+        background-color: $primary-darkerer;
+    }
+
+    &.status-stage-2 {
+        background-color: $info-darker;
+    }
+
+    &.status-stage-3 {
+        background-color: $warning-darker;
+    }
+
+    &.status-stage-4 {
+        background-color: $success-darker;
+    }
+
+    &.status-stage-5 {
+        background-color: $danger-darker;
+    }
+}

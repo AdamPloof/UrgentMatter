@@ -7,7 +7,7 @@ import {
 
 import Nav from "./Nav";
 import Sidebar from "./Sidebar";
-import Queue from "./Queue";
+import Queue from "./Queue/Queue";
 
 export default function ServiceBoard() {
     const [tickets, setTickets] = useState([]);
