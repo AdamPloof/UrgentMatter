@@ -4,8 +4,11 @@
     {% include "includes/portal_nav.html.twig" %}
 {% endblock %}
 
-{% block body %}
+{% block banner %}
     {% include "includes/portal_banner.html.twig" %}
+{% endblock %}
+
+{% block body %}
     <div class="container mt-4">
         <div class="portal-body">
             <p class="lead">Thanks {{ submitter }}, your farewell ticket has been submitted.</p>
@@ -13,6 +16,7 @@
                 {# <a href="{{ path('service_board_demo') }}">UrgentMatter Service Board demo</a>. #}
                 <a href="#">UrgentMatter Service Board demo</a>.
             </p>
+            <p>To submit another ticket, head back to the <a href="{{ path('portal') }}">Ticket Portal</a></p>
             <small class="text-muted"><strong>Note:</strong> the service board demo is just 
                 an example of what John will see. All submitted tickets are kept private.
             </small>

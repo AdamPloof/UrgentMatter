@@ -11,6 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Ticket;
 use App\Entity\Urgency;
 use App\Form\Type\TicketType;
+use App\Service\AntiBot;
 
 class PortalController extends AbstractController {
     #[Route('/', name: 'index')]
@@ -21,48 +22,56 @@ class PortalController extends AbstractController {
     }
 
     #[Route('/portal', name: 'portal', methods: ['GET', 'POST'])]
-    public function portal(Request $request, EntityManagerInterface $em): Response {
+    public function portal(
+        Request $request,
+        EntityManagerInterface $em,
+        AntiBot $antibot
+    ): Response {
         $ticket = new Ticket();
         $form = $this->createForm(TicketType::class, $ticket);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $challenge = $form->get('antibot')->getData();
+            if ($antibot->isBot($challenge)) {
+                $this->addFlash(
+                    'danger',
+                    'Incorrect answer for anti-bot challenge. Please try again.'
+                );
+
+                return $this->render('portal.html.twig', [
+                    'form' => $form,
+                    'avatars' => $this->getParameter('app.avatars')
+                ]);        
+            }
+
+
             /** @var Ticket $ticket */
             $ticket = $form->getData();
+
             $submitted = new \DateTime();
             $ticket->setSubmitted($submitted);
             $em->persist($ticket);
             $em->flush();
 
             return $this->redirectToRoute('ticket_submitted', [
-                'title' => 'Urgent Matter - Portal',
-                'ticketId' => $ticket->getId()
+                'submitter' => $ticket->getSubmitter()
             ]);
         }
 
-        $avatars = $this->getParameter('app.avatars');
-
         return $this->render('portal.html.twig', [
             'form' => $form,
-            'avatars' => $avatars
+            'avatars' => $this->getParameter('app.avatars')
         ]);
     }
 
-    // TODO: people shouldn't be able to navigate to this unless they submitted the ticket.
-    //       Maybe check that there's a cookie set?
-    #[Route('/portal/ticket-submitted/{ticketId}', name: 'ticket_submitted', requirements: ['ticketId' => '\d+'])]
-    public function ticketSubmitted(EntityManagerInterface $em, int $ticketId): Response {
-        /** @var Ticket $ticket */
-        $ticket = $em->getRepository(Ticket::class)->find($ticketId);
-        if (!$ticket) {
-            $this->addFlash('danger', 'There was an error submiting your ticket. Sorry, IT problems!');
-            $this->redirectToRoute('portal');
-        }
+    #[Route('/portal/ticket-submitted', name: 'ticket_submitted')]
+    public function ticketSubmitted(Request $request): Response {
+        $submitter = $request->query->get('submitter', '');
 
         return $this->render('ticket_submitted.html.twig', [
             'title' => 'Urgent Matter - Ticket Submitted',
-            'ticketId' => $ticket->getId(),
-            'submitter' => $ticket->getSubmitter()
+            'submitter' => $submitter
         ]);
     }
 }

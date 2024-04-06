@@ -48,6 +48,11 @@ class TicketType extends AbstractType
                 'class' => Urgency::class,
                 'choice_label' => 'description'
             ])
+            ->add('antibot', TextType::class, [
+                'label' => 'Where does John work?',
+                'mapped' => false,
+                'help' => "Prove you're not a robot by entering the place where John works (for a little longer)"
+            ])
             ->add('save', SubmitType::class, [
                 'label' => 'Submit'
             ])

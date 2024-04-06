@@ -16,6 +16,7 @@ parameters:
         - 'destiny.jpg'
         - 'krusty.jpg'
     app.faux_ticket_data_path: '%env(resolve:FAUX_TICKET_DATA)%'
+    app.anti_bot_keys: '%env(json:ANTI_BOT_KEYS)%'
 
 services:
     # default configuration for services in *this* file
@@ -35,6 +36,9 @@ services:
         arguments:
             $avatars: '%app.avatars%'
             $fauxTicketDataPath: '%app.faux_ticket_data_path%'
+    App\Service\AntiBot:
+        arguments:
+            $keys: '%app.anti_bot_keys%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

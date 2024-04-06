@@ -18,6 +18,7 @@ class ServiceBoardController extends AbstractController {
     public function serviceBoard(): Response {
         return $this->render('service_board.html.twig', [
             'title' => 'Urgent Matter - Service Board',
+            'disable_flash_msgs' => true
         ]);
     }
 
