@@ -2,10 +2,8 @@ import React, { useState, useRef } from "react";
 import { TICKET_STATUS } from "../../../includes/consts";
 import { useOutsideClickListener } from '../../../includes/hooks';
 
-// TODO: only one agent select should be able to be active at any given time
-// also clicking outside of the selector should close it
 export default function StatusSelect(props) {
-    const [status, setStatus] = useState({...TICKET_STATUS.IGNORED});
+    const [status, setStatus] = useState({...TICKET_STATUS[props.status]});
     const [active, setActive] = useState(false);
 
     const selectWrapper = useRef(null);

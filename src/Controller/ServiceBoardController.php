@@ -22,6 +22,17 @@ class ServiceBoardController extends AbstractController {
         ]);
     }
 
+    #[Route('/service-board/view/{id}', name: 'view_ticket', requirements: ['id' => '\d+'])]
+    public function viewTicket(EntityManagerInterface $em, int $id): Response {
+        $ticket = $em->getRepository(Ticket::class)->find($id);
+        dd($ticket);
+
+        return $this->render('service_board.html.twig', [
+            'title' => 'Urgent Matter - Service Board',
+            'disable_flash_msgs' => true
+        ]);
+    }
+
     #[Route('/service-board/fetch/{id}', name: 'service_board_fetch', requirements: ['id' => '\d+'])]
     public function fetch(
         EntityManagerInterface $em,

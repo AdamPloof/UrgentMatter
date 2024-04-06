@@ -10,7 +10,7 @@ export default function AgentSelect(props) {
         {name: 'GConstanza', img: 'george.jpg', alt: 'George agent image'},
         {name: 'CKramer', img: 'kramer.jpg', alt: 'Kramer agent image'},
         {name: 'EBenis', img: 'elaine.jpg', alt: 'Elaine agent image'},
-        {name: 'Unassigned', img: 'unassigned.jpg', alt: 'Unassigned agent image'},
+        {name: 'Unassigned', img: 'unassigned.svg', alt: 'Unassigned agent image'},
     ];
     const [agent, setAgent] = useState({...agents[0]});
     const [active, setActive] = useState(false);

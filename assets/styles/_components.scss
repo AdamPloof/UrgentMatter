@@ -253,3 +253,28 @@ table.queue-table {
         background-color: $danger-darker;
     }
 }
+
+.urgency {
+    display: flex;
+    flex-direction: row;
+    color: $grey-light;
+}
+
+.sla {
+    display: flex;
+    flex-direction: row;
+    padding: .2rem .75rem;
+    border-radius: .75rem;
+
+    &.sla-on-target {
+        background-color: $grey-darker;        
+    }
+
+    &.sla-warning {
+        background-color: $warning-darker;
+    }
+
+    &.sla-danger {
+        background-color: $danger-darker;
+    }
+}
