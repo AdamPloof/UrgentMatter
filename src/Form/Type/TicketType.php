@@ -49,7 +49,10 @@ class TicketType extends AbstractType
                 'choice_label' => 'description'
             ])
             ->add('antibot', TextType::class, [
-                'label' => 'Where does John work?',
+                'label' => 'Challenge: where does John work?',
+                'label_attr' => [
+                    'class' => 'form-challenge'
+                ],
                 'mapped' => false,
                 'help' => "Prove you're not a robot by entering the place where John works (for a little longer)"
             ])
