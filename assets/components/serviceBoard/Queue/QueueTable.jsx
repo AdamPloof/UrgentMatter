@@ -3,11 +3,10 @@ import React from "react";
 import TableLoader from "../TableLoader";
 import AgentSelect from "./AgentSelect";
 import StatusSelect from "./StatusSelect";
-import { ticketKey, ticketType } from "../../../includes/utils";
+import { ticketKey, ticketType, sla } from "../../../includes/utils";
 import { TICKET_DETAIL } from "../../../includes/paths";
 import { 
     TICKET_STATUS,
-    TICKET_SLA,
     URGENCY_MAP
 } from "../../../includes/consts";
 
@@ -99,23 +98,6 @@ function urgency(urgency) {
             <img width="20" className="urgency-icon" src={icon} alt={urgency.description} />
             <span className="urgency-description ps-2">
                 {urgency.description}
-            </span>
-        </div>
-    );
-}
-
-/**
- * @return {string} should be one of the TICKET_SLA const values
- */
-function sla() {
-    const slas = Object.values(TICKET_SLA);
-    const sla = slas[Math.floor(Math.random() * slas.length)];
-
-    return (
-        <div className={sla.className}>
-            <img width="20" className="sla-icon" src={sla.icon} alt={sla.description} />
-            <span className="sla-description ps-2">
-                {sla.description}
             </span>
         </div>
     );

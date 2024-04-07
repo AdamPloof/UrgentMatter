@@ -1,5 +1,5 @@
 import React from "react";
-import { TICKET_TYPES } from "./consts";
+import { TICKET_TYPES, TICKET_SLA } from "./consts";
 
 export async function fetchData(url) {
     const params = {
@@ -48,4 +48,56 @@ export function ticketType() {
    const ticketType = ticketTypes[Math.floor(Math.random() * ticketTypes.length)];
 
    return <img width="20" className="ticket-type-icon" src={ticketType.src} alt={ticketType.altText} />
+}
+
+/**
+ * @return {string} should be one of the TICKET_SLA const values
+ */
+export function sla() {
+    const slas = Object.values(TICKET_SLA);
+    const sla = slas[Math.floor(Math.random() * slas.length)];
+
+    return (
+        <div className={sla.className}>
+            <img width="20" className="sla-icon" src={sla.icon} alt={sla.description} />
+            <span className="sla-description ps-2">
+                {sla.description}
+            </span>
+        </div>
+    );
+}
+
+/**
+ * @param {number} monthNum 
+ * @return {string} the short month name for a given month number (0 indexed)
+ */
+export function getShortMonth(monthNum) {
+    const months = ['Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[monthNum];
+}
+
+/**
+ * Convert hours number to AM/PM string
+ * 
+ * e.g. 13 = '1:00 PM'
+ * 
+ * @param {number} hours
+ * @return {string} the formatted hours
+ */
+export function formatHours(hours) {
+    if (hours === 0) {
+        return '12:00 AM';
+    }
+
+    const amPm = hours >= 12 ? 'PM' : 'AM';
+    const hoursStr = hours > 12 ? `${hours - 12}:00` : `${hours}:00`;
+
+    return `${hoursStr} ${amPm}`;
+}
+
+/**
+ * @param {number} max the highest integer allowed for the random number
+ */
+export function randInt(max) {
+    return Math.floor(Math.random() * max);
 }

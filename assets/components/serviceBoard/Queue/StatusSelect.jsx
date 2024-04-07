@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { TICKET_STATUS } from "../../../includes/consts";
 import { useOutsideClickListener } from '../../../includes/hooks';
 
+// TODO: the currently selected status should always be on top of the select options
 export default function StatusSelect(props) {
     const [status, setStatus] = useState({...TICKET_STATUS[props.status]});
     const [active, setActive] = useState(false);

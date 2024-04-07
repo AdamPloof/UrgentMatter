@@ -307,7 +307,7 @@ table.queue-table {
     }
 
     .element-content {
-        padding: 1rem .5rem;
+        padding: 1.5rem 1rem;
     }
 
     .ticket-nav {
@@ -367,7 +367,7 @@ table.queue-table {
 
                 &.disabled {
                     pointer-events: none;
-                    background-color: $grey-dark;
+                    background-color: $grey;
                 }
 
                 &:hover {
@@ -433,4 +433,85 @@ table.queue-table {
             text-decoration: none;
         }
     }
+}
+
+.ticket-sidebar {
+    padding-top: $content-top-padding;
+}
+
+.sb-actions {
+    .status-select-wrapper,
+    .status-select,
+    .status-info {
+        height: 100%;
+        min-width: 140px;
+    }
+
+    .status-select-wrapper {
+        position: relative;
+    }
+
+    .status-select.active {
+        width: 100%;
+        top: 0;
+
+        .status-info {
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+        }
+    }
+
+    img.actions-btn-icon {
+        margin-top: -2px;
+        margin-bottom: -2px;
+    }
+
+    .sb-widget {
+        margin-left: .75rem;
+        display: flex;
+        align-items: flex-end;
+
+        a {
+            text-decoration: none;
+            color: $grey-lighter;
+            
+            &:after {
+                border: none;
+            }
+
+            &.more-option {
+                font-size: 150%;
+            }
+
+            &:hover {
+                color: $grey;
+            }
+
+            img:hover {
+                filter: brightness(75%);
+            }
+        }
+    }
+}
+
+.ticket-sidebar .ticket-element-wrapper {
+    width: 100%;
+}
+
+.sb-sla {
+    font-size: 90%;
+    color: $grey-lighter;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sla-countdown {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    background-color: $danger-light;
+    color: $bs-bg-dark;
+    padding: .4rem .75rem;
+    border-radius: 1.25rem;
 }
