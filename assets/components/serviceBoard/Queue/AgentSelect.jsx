@@ -1,18 +1,12 @@
 import React, { useState, useRef } from "react";
 import { AGENTS } from "../../../includes/paths";
+import { AGENT_AVATARS } from "../../../includes/consts";
 import { useOutsideClickListener } from '../../../includes/hooks';
 
 // TODO: only one agent select should be able to be active at any given time
 // also clicking outside of the selector should close it
 export default function AgentSelect(props) {
-    const agents = [
-        {name: 'JBergeron', img: 'jerry.jpg', alt: 'Jerry agent image'},
-        {name: 'GConstanza', img: 'george.jpg', alt: 'George agent image'},
-        {name: 'CKramer', img: 'kramer.jpg', alt: 'Kramer agent image'},
-        {name: 'EBenis', img: 'elaine.jpg', alt: 'Elaine agent image'},
-        {name: 'Unassigned', img: 'unassigned.svg', alt: 'Unassigned agent image'},
-    ];
-    const [agent, setAgent] = useState({...agents[0]});
+    const [agent, setAgent] = useState({...AGENT_AVATARS[0]});
     const [active, setActive] = useState(false);
 
     const selectWrapper = useRef(null);
@@ -29,7 +23,7 @@ export default function AgentSelect(props) {
                 </div>
             </div>
             <div className={active ? "agent-select active" : "agent-select hide"}>
-                {agents.map(agent => {
+                {AGENT_AVATARS.map(agent => {
                     return (
                         <div 
                             className="agent-info" 

@@ -101,3 +101,12 @@ export function formatHours(hours) {
 export function randInt(max) {
     return Math.floor(Math.random() * max);
 }
+
+export function sidebarListItem(label, value) {
+    return (
+        <div className="sidebar-list-item">
+            <div className="list-item-label">{label}</div>
+            <div className="list-item-value">{value}</div>
+        </div>
+    );
+}

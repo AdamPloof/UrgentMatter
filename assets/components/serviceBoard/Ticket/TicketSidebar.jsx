@@ -1,6 +1,7 @@
 import React from "react";
 import SbActions from "./SbActions";
 import SbSLAs from "./SbSLAs";
+import SbDetails from "./SbDetails";
 
 export default function TicketSidebar(props) {
     return (
@@ -10,6 +11,9 @@ export default function TicketSidebar(props) {
             </div>
             <div className="ticket-element-wrapper">
                 <SbSLAs />
+            </div>
+            <div className="ticket-element-wrapper">
+                <SbDetails ticket={props.ticket} />
             </div>
         </div>
     )

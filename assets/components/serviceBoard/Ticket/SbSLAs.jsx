@@ -26,7 +26,7 @@ function content(responseCountdown, resolveCountdown) {
             </div>
             <div className="sb-sla d-flex flex-row">
                 {slaCountdown(resolveCountdown)}
-                {timeTo('cancel')}
+                {timeTo('cancel, err... resolve')}
             </div>
         </React.Fragment>
     );

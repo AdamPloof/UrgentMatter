@@ -207,6 +207,7 @@ table.queue-table {
     .status-info {
         border-radius: 0;
         width: 100%;
+        height: fit-content;
 
         &:first-of-type {
             border-top-left-radius: .5rem;
@@ -564,4 +565,43 @@ table.queue-table {
     color: $bs-bg-dark;
     padding: .4rem .75rem;
     border-radius: 1.25rem;
+}
+
+.sidebar-list {
+    display: flex;
+    flex-direction: column;
+    font-size: 90%;
+    color: $grey-light;
+
+    .sidebar-list-item {
+        display: flex;
+        flex-direction: row;
+        padding-top: .4rem;
+        padding-bottom: .4rem;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        .list-item-label {
+            width: 40%;
+        }
+
+        .list-item-value {
+            position: relative;
+            color: $grey-lighter;
+            width: 60%;
+            padding: 0.2rem 0.75rem;
+
+            // TODO: figure out how to have padding for the agent select and still
+            // align with the other list elements
+            .agent-info {
+                padding-left: 0;
+            }
+
+            .agent-select.active {
+                top: 0;
+            }
+        }
+    }
 }
