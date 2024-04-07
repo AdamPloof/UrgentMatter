@@ -1,5 +1,6 @@
 // const origin = process.env.ORIGIN;
 const base = process.env.BASE_URL;
+export const SERVICE_BOARD = base + 'service-board';
 export const TICKET_DETAIL = base + 'service-board/view';
 export const FETCH_TICKET = base + 'service-board/fetch';
 export const FETCH_TICKETS = base + 'service-board/fetch-all';

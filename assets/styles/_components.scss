@@ -87,8 +87,9 @@ img.agent-img {
     width: fit-content;
 }
 
-// Service board
-.service-board-layout {
+// Service board & Tickets
+.service-board-layout,
+.ticket-layout {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -276,5 +277,160 @@ table.queue-table {
 
     &.sla-danger {
         background-color: $danger-darker;
+    }
+}
+
+// Ticket
+.ticket-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-top: $content-top-padding;
+
+    .ticket-content {
+        width: 70%;
+        padding-left: 2rem;    
+        padding-right: 2rem;    
+    }
+}
+
+.ticket-element-wrapper {
+    padding-bottom: 1rem;
+}
+
+.ticket-element {
+    border: $border-main;
+    width: 100%;
+
+    &.ticket-element-borderless {
+        border: none;
+    }
+
+    .element-content {
+        padding: 1rem .5rem;
+    }
+
+    .ticket-nav {
+        display: flex;
+        flex-direction: row;
+        font-size: 90%;
+        color: $grey-light;
+
+        & > * {
+            margin-right: 1.75rem;
+        }
+
+        .nav-back a {
+            color: $grey-light;
+            text-decoration: none;
+
+            &:hover {
+                color: $grey;
+            }
+        }
+
+        .nav-back::before {
+            display: inline-block;
+            margin-left: .255em;
+            vertical-align: .08em;
+            content: "";
+            border-top: .3em solid transparent;
+            border-right: .3em solid;
+            border-bottom: .3em solid transparent;
+            border-left: 0;
+        }
+
+        .ticket-key {
+            display: flex;
+            flex-direction: row;
+
+            span {
+                vertical-align: middle;
+            }
+        }
+
+        .prev-next-wrapper {
+            display: flex;
+            flex-direction: row;
+
+            .prev-btn,
+            .next-btn {
+                width: 20px;
+                height: 20px;
+                color: $grey-lighter;
+                background-color: $grey-darker;
+                padding: .75rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: .3rem;
+
+                &.disabled {
+                    pointer-events: none;
+                    background-color: $grey-dark;
+                }
+
+                &:hover {
+                    background-color: $grey-darkerer;
+                }
+            }
+
+            .prev-btn {
+                margin-right: 1rem;
+            }
+
+            a.prev-btn::after {
+                display: inline-block;
+                // margin-left: .08em;
+                vertical-align: .08em;
+                content: "";
+                border-top: .3em solid transparent;
+                border-right: .3em solid;
+                border-bottom: .3em solid transparent;
+                border-left: 0;
+            }
+
+            a.next-btn::after {
+                display: inline-block;
+                // margin-left: .08em;
+                vertical-align: .08em;
+                content: "";
+                border-top: .3em solid transparent;
+                border-left: .3em solid;
+                border-bottom: .3em solid transparent;
+                border-right: 0;
+            }
+        }
+
+    }
+
+    .ticket-options {
+        display: flex;
+        flex-direction: row;
+
+        & > * {
+            margin-right: 1rem;
+        }
+    }
+}
+
+.ticket-body {
+    padding-top: 1.5rem;
+    width: 100%;
+}
+
+.ticket-submitter-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    
+    .submitter-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        a {
+            text-decoration: none;
+        }
     }
 }

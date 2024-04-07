@@ -3,9 +3,9 @@ import React from "react";
 import TableLoader from "../TableLoader";
 import AgentSelect from "./AgentSelect";
 import StatusSelect from "./StatusSelect";
+import { ticketKey, ticketType } from "../../../includes/utils";
 import { TICKET_DETAIL } from "../../../includes/paths";
 import { 
-    TICKET_TYPES,
     TICKET_STATUS,
     TICKET_SLA,
     URGENCY_MAP
@@ -59,7 +59,7 @@ function ticketRow(ticket, ticketIdx, ticketsArr) {
                     id={`queueSelect${ticket.id}`}
                 />
             </td>
-            <td>{ticketType(TICKET_TYPES.CRYO_CHAMBER)}</td>
+            <td>{ticketType()}</td>
             <td>{ticketKey(ticket.id)}</td>
             <td>{ticketSummary(ticket)}</td>
             <td>{ticket.submitter}</td>
@@ -84,23 +84,6 @@ function ticketSummary(ticket) {
     return (
         <a className="queue-link" href={`${TICKET_DETAIL}/${ticket.id}`}>{ticket.subject}</a>
     );
-}
-
-/**
- * ticketType, status and SLA can effectively be randomly selected. It would probably look more natural though
- * if we have certain types, statuses and SLAs that are more common.
- */
-function ticketType() {
-    const ticketTypes = Object.values(TICKET_TYPES);
-    const ticketType = ticketTypes[Math.floor(Math.random() * ticketTypes.length)];
-    return <img width="20" className="ticket-type-icon" src={ticketType.src} alt={ticketType.altText} />
-}
-
-/**
- * @return {string}
- */
-function ticketKey(ticketId) {
-    return `UM-${ticketId}`;
 }
 
 function urgency(urgency) {

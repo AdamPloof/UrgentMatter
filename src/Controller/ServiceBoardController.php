@@ -24,11 +24,9 @@ class ServiceBoardController extends AbstractController {
 
     #[Route('/service-board/view/{id}', name: 'view_ticket', requirements: ['id' => '\d+'])]
     public function viewTicket(EntityManagerInterface $em, int $id): Response {
-        $ticket = $em->getRepository(Ticket::class)->find($id);
-        dd($ticket);
-
-        return $this->render('service_board.html.twig', [
-            'title' => 'Urgent Matter - Service Board',
+        return $this->render('ticket.html.twig', [
+            'title' => 'Urgent Matter - Ticket',
+            'ticket_id' => $id,
             'disable_flash_msgs' => true
         ]);
     }
@@ -39,7 +37,8 @@ class ServiceBoardController extends AbstractController {
         TicketSerializer $serializer,
         int $id
     ): Response {
-        $ticket = $em->getRepository(Ticket::class)->find($id);
+        $ticketRepo = $em->getRepository(Ticket::class);
+        $ticket = $ticketRepo->find($id);
         if (!$ticket) {
             $response = new Response(json_encode([
                     'error' => "Ticket not found for id: $id"
@@ -48,8 +47,19 @@ class ServiceBoardController extends AbstractController {
                 ['Content-Type' => 'application/json']
             );
         } else {
+            $prevTicket = $ticketRepo->find($id - 1);
+            $nextTicket = $ticketRepo->find($id + 1);
+
+            // Yes, this is silly to encode, decode and re-encode the ticket.
+            // TODO: Fix the annoying circular refence problem so we don't have to do
+            // the encoding dance.
+            $content = [
+                'ticket' => json_decode($serializer->serialize([$ticket]), true)[0],
+                'hasPrev' => $prevTicket ? true : false,
+                'hasNext' => $nextTicket ? true : false,
+            ];
             $response = new Response(
-                $serializer->serialize($ticket),
+                json_encode($content),
                 200,
                 ['Content-Type' => 'application/json']
             );

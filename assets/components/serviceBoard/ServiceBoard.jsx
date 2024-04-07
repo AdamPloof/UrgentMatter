@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { fetchData } from "../../includes/utils";
 import { 
-    FETCH_TICKET,
     FETCH_TICKETS,
     GENERATE_TICKETS
 } from "../../includes/paths";
@@ -25,6 +25,7 @@ export default function ServiceBoard() {
         fetchFauxTickets();
     }, []);
 
+    // TODO: display loader
     const fetchTickets = async () => {
         const url = FETCH_TICKETS;
         try {
@@ -46,35 +47,6 @@ export default function ServiceBoard() {
         } catch (e) {
             setError('Error: could not fetch ticket data');
             console.error(e);
-        }
-    };
-
-    const fetchData = async (url) => {
-        const params = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        };
-        let data = null;
-        let err = null;
-        try {
-            const res = await fetch(url, params);
-            if (!res.ok) {
-                throw new Error(`HTTP error! status: ${res.status}, url: ${url}`);
-            }
-
-            data = await res.json();
-        } catch (e) {
-            err = e;
-        } finally {
-            if (data) {
-                return data;
-            } else if (err !== null) {
-                return Promise.reject(err);
-            } else {
-                return Promise.reject(new Error('Could not fetch data for: ' + url));
-            }
         }
     };
 

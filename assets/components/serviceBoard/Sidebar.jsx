@@ -5,12 +5,12 @@ export default function Sidebar(props) {
     return (
         <div className="service-board-sidebar">
             <div className="sb-header">
-                {/* <div className="header-logo">
-                    <span>LOGO</span>
-                </div> */}
+                <div className="header-title">
+                    <h3>IT salute desk</h3>
+                </div>
                 <div className="header-body">
-                    <div className="header-title">
-                        <h3>IT salute desk</h3>
+                    <div className="header-logo">
+                        <img width="40" src={`${ICONS}/logo_death_star.png`} alt="Death start logo"></img>
                     </div>
                     <div className="header-description">
                         <span>Farewell project</span>

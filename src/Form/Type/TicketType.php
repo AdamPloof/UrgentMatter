@@ -34,7 +34,7 @@ class TicketType extends AbstractType
                 'label' => 'Subject',
             ])
             ->add('body',  TextareaType::class, [
-                'label' => 'Description',
+                'label' => 'Message',
                 'help' => 'A farewell message for John',
                 'attr' => [
                     'rows' => 8,
