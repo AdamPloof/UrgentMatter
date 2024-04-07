@@ -494,6 +494,56 @@ table.queue-table {
     }
 }
 
+.ticket-element.ticket-element-collapsible {
+    &.expanded {
+        a.sb-expand-control {
+            &:after {
+                @include down-arrow();
+            }
+        }
+
+        .element-content {
+            display: block;
+        }
+    }
+
+    &.collapsed {
+        a.sb-expand-control {
+            &:after {
+                @include up-arrow();
+            }
+        }
+
+        .element-content {
+            display: none;
+            padding: 0;
+        }
+    }
+
+    .element-header {
+        background-color: $grey-darkerer;
+        padding: .75rem 1rem;
+        border-bottom: $border-main;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $grey-darker;
+        }
+
+        a {
+            color: $grey-lighterer;
+            text-decoration: none;
+        }
+
+        h5 {
+            margin-bottom: 0;
+        }
+    }
+}
+
 .ticket-sidebar .ticket-element-wrapper {
     width: 100%;
 }

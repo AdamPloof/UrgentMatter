@@ -10,6 +10,7 @@ export default function SbSLAs(props) {
 
     return (
         <SbCollapsibleElement
+            title={'SLAs'}
             startExpanded={true}
             content={content(responseCountdown, resolveCountdown)}
         />
@@ -37,7 +38,7 @@ function slaCountdown(hoursLeft) {
     const daysAgo = randInt(7);
     respDate.setDate(respDate.getDate() - daysAgo);
     respDate.setHours(hoursLeft);
-    const countdown = getShortMonth(respDate.getMonth()) + ' ' + formatHours(respDate.getHours());
+    const countdown = getShortMonth(respDate.getMonth()) + ` ${respDate.getDate()} ` + formatHours(respDate.getHours());
 
     return (
         <div className="sla-countdown me-3">

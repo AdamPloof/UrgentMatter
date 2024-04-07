@@ -11,11 +11,23 @@ export default function SbCollapsibleElement(props) {
         }
     };
 
+    const elementCls = expanded ?
+        "ticket-element ticket-element-collapsible expanded" :
+        'ticket-element ticket-element-collapsible collapsed';
+
     return (
-        <div className="ticket-element ticket-element-collapsible">
-            <div className="element-header">
+        <div className={elementCls}>
+            <div 
+                className="element-header" 
+                role="button"
+                onClick={(e) => {
+                    setExpanded(expanded ? false : true);
+                }}
+            >
                 <div className="header-title">
-                    {props.title}
+                    <h5>
+                        {props.title}
+                    </h5>
                 </div>
                 <div className="header-control">
                     <a className="sb-expand-control" role="button" href="#"></a>
