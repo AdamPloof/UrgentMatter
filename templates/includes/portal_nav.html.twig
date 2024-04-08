@@ -1,33 +1,25 @@
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">UrgentMatter <span class="text-muted">- Farewell Center</span></span>
-        <div class="nav-right">
-            {# <a href="#">Farewells
-                <span class="ms-1 badge rounded-pill bg-danger">
-                    99+
-                    <span class="visually-hidden">fake tickets</span>
-                </span>
-            </a> #}
-            {# {% for avatar in avatars %}
-                {% if loop.index0 == 0 %}
-                    {% set user_avatar_class = "user-avatar active" %}
-                {% else %}
-                    {% set user_avatar_class = "user-avatar hide" %}
-                {% endif %}
-            
-                <div
-                    id="{{ 'user_avatar_' ~ avatar|replace({'.jpg': ''}) }}"
-                    class="{{ user_avatar_class }} ms-3"
-                >
-                    <img
-                        class="avatar-img"
-                        width="50"
-                        height="50"
-                        src="{{ asset('build/images/avatars/' ~ avatar) }}" 
-                        alt="avatar icon"
-                    >
+        <div class="nav-right pe-3">
+            {% if app.user %}
+                <div class="user-info d-flex flex-row pe-3 justify-content-center align-items-center">
+                    <div class="user-avatar pe-2">
+                        {# TODO: change this to John #}
+                        <img heigh="30" width="30" src="{{ asset('build/images/agents/kramer.jpg') }}" alt="Agent avatar" />
+                    </div>
+                    <div class="username">
+                        {{ app.user.username }}
+                    </div>
                 </div>
-            {% endfor %} #}
+                <div class="log-link">
+                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% else %}
+                <div class="log-link">
+                    <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 </nav>

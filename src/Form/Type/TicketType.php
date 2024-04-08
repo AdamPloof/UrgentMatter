@@ -54,7 +54,7 @@ class TicketType extends AbstractType
                     'class' => 'form-challenge'
                 ],
                 'mapped' => false,
-                'help' => "Prove you're not a robot by entering the place where John works (for a little longer)"
+                'help' => "Prove you're not a robot by entering the place where John works (for a little longer at least)"
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Submit'

@@ -33,3 +33,11 @@
         margin-left: .25rem;
     }
 }
+
+.user-info .username {
+    color: $info-light;
+}
+
+.user-info .user-avatar img {
+    border-radius: 50%;
+}

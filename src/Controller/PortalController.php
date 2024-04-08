@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -15,10 +16,13 @@ use App\Service\AntiBot;
 
 class PortalController extends AbstractController {
     #[Route('/', name: 'index')]
-    public function index(): Response {
-        return $this->render('index.html.twig', [
-            'foo' => 'foo',
-        ]);
+    public function index(): RedirectResponse {
+        $user = $this->getUser();
+        if ($user) {
+            return $this->redirectToRoute('service_board');
+        }
+
+        return $this->redirectToRoute('portal');
     }
 
     #[Route('/portal', name: 'portal', methods: ['GET', 'POST'])]
