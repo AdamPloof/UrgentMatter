@@ -39,6 +39,15 @@
         }
 
         .header-title {
+            a {
+                text-decoration: none;
+                color: $grey-lighterer;
+
+                &:hover {
+                    color: $grey-lighter;
+                }
+            }
+
             h3 {
                 font-size: 1.25rem;
                 margin-bottom: 0;
@@ -48,6 +57,15 @@
         .header-description {
             color: $grey-light;
             font-size: 95%;
+
+            a {
+                text-decoration: none;
+                color: $grey-light;
+
+                &:hover {
+                    color: $grey;
+                }
+            }
         }
     }
 

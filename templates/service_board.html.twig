@@ -9,7 +9,15 @@
     {% set username = '' %}
 {% endif %}
 
+{% if demo_mode is not defined %}
+    {% set demo_mode = false %}
+{% endif %}
+
 {% block body %}
     {# React component #}
-    <div data-username="{{ username }}" id="service-board-component"></div>
+    <div 
+        data-username="{{ username }}"
+        id="service-board-component"
+        data-demo-mode="{{ demo_mode }}"
+    ></div>
 {% endblock %}

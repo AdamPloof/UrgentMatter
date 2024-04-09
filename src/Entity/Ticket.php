@@ -36,6 +36,10 @@ class Ticket
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $submitted = null;
 
+    private bool $isFaux = false;
+    private bool $hasPrev = false;
+    private bool $hasNext = false;
+
     // Note: don't actually use this to set IDs of Tickets that will
     // be persisted to the database. This is just so that we can
     // set the ID of faux Tickets.
@@ -132,5 +136,29 @@ class Ticket
         $this->submitted = $submitted;
 
         return $this;
+    }
+
+    public function isFaux(): bool {
+        return $this->isFaux;
+    }
+
+    public function setIsFaux(bool $isFaux): void {
+        $this->isFaux = $isFaux;
+    }
+
+    public function hasPrev(): bool {
+        return $this->hasPrev;
+    }
+
+    public function setHasPrev(bool $hasPrev): void {
+        $this->hasPrev = $hasPrev;
+    }
+
+    public function hasNext(): bool {
+        return $this->hasNext;
+    }
+
+    public function setHasNext(bool $hasNext): void {
+        $this->hasNext = $hasNext;
     }
 }

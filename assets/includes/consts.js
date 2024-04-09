@@ -1,5 +1,10 @@
 import { ICONS } from "./paths";
 
+export const MODE = {
+    STD: 'std',
+    DEMO: 'demo',
+};
+
 export const TICKET_TYPES = {
     CRYO_CHAMBER: {
         altText: 'Ticket type: cryo chamber',

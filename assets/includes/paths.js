@@ -1,12 +1,15 @@
 // const origin = process.env.ORIGIN;
 const base = process.env.BASE_URL;
+export const SERVICE_BOARD_DEMO = base + 'demo/service-board';
 export const SERVICE_BOARD = base + 'service-board';
 export const TICKET_DETAIL = base + 'service-board/view';
+export const TICKET_DETAIL_DEMO = base + 'demo/service-board/view';
 export const FETCH_TICKET = base + 'service-board/fetch';
 export const FETCH_TICKETS = base + 'service-board/fetch-all';
 export const GENERATE_TICKETS = base + 'service-board/generate';
+export const GENERATE_TICKET = base + 'service-board/generate-one';
 export const ICONS = base + 'build/images/icons';
 export const AVATARS = base + 'build/images/avatars';
 export const AGENTS = base + 'build/images/agents';
-export const LOGIN = 'login';
-export const LOGOUT = 'logout';
+export const LOGIN = base + 'login';
+export const LOGOUT = base + 'logout';

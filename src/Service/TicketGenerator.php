@@ -16,7 +16,6 @@ class TicketGenerator {
     const START_DATE_RANGE = 1672531200; // 2023-01-01
     const END_DATE_RANGE = 1712534400; // 2024-04-08
 
-    private int $currentId;
     private array $fauxTicketData;
     private array $avatars;
     private EntityManagerInterface $em;
@@ -29,10 +28,6 @@ class TicketGenerator {
         $this->em = $em;
         $this->avatars = $avatars;
         $this->fauxTicketData = $this->readFauxData($fauxTicketDataPath);
-
-        // Setting current ID to something reasonably high so that we can be sure the
-        // IDs don't conflict with real tickets
-        $this->currentId = 10000;
     }
 
     /**
@@ -42,30 +37,36 @@ class TicketGenerator {
     public function generate(int $numTickets): array {
         $tickets = [];
         for ($i = 0; $i < $numTickets; $i++) {
-            $tickets[] = $this->buildTicket();
+            $fauxData = $this->pop();
+            if (!$fauxData) {
+                break;
+            }
+
+            $tickets[] = $this->buildTicket($fauxData);
         }
 
         return $tickets;
     }
 
-    public function buildTicket(): Ticket {
-        $ticket = new Ticket();
-        $ticket->setId($this->currentId);
+    /**
+     * @param int $numTickets the number of tickets to generate
+     * @return Ticket[] a collection of tickets
+     */
+    public function generateOne(?int $ticketId = null): Ticket {
+        return $this->buildTicket($this->pop($ticketId));
+    }
 
-        $fauxData = $this->fauxTicketData[array_rand($this->fauxTicketData)];
+    public function buildTicket(array $fauxData): Ticket {
+        $ticket = new Ticket();
+        $ticket->setId($fauxData['id']);
         $ticket->setSubmitted($this->makeSubmitted());
         $ticket->setSubmitter($fauxData['submitter']);
         $ticket->setEmail($fauxData['email']);
         $ticket->setAvatar($this->makeAvatar());
-        // $ticket->setSubject($fauxData['subject']);
-        // $ticket->setBody($fauxData['body']);
-
-        $ticket->setSubject("Test subject IT request");
-        $ticket->setBody("Test body my printer is not printing server is down.");
-
+        $ticket->setSubject($fauxData['subject']);
+        $ticket->setBody($fauxData['body']);
         $ticket->setUrgency($this->makeUrgency());
-
-        $this->currentId++;
+        $ticket->setIsFaux(true);
 
         return $ticket;
     }
@@ -93,6 +94,42 @@ class TicketGenerator {
             throw new \Exception('Could not locate mock ticket data file');
         }
 
-        return json_decode(file_get_contents($dataPath), true);
+        $ticketData = json_decode(file_get_contents($dataPath), true);
+        
+        return array_filter($ticketData, function ($t) {
+            return strlen($t['subject']) > 0 && strlen($t['body']) > 0;
+        });
+    }
+
+    /**
+     * Pull a faux ticket out of the dataset so that we don't generate duplicates
+     * 
+     * @param null|int $id the id of the faux data to use
+     * @return null|array the ticket data or null if we're out of tickets in the dataset
+     */
+    private function pop(?int $id = null): ?array {
+        if (empty($this->fauxTicketData)) {
+            return null;
+        }
+
+        $fauxData = [];
+        if ($id !== null ) {
+            // IDs are sorted so this could be done with a faster search. Just sayin'
+            foreach ($this->fauxTicketData as $idx => $ticketData) {
+                if ($ticketData['id'] == $id) {
+                    $fauxData = $ticketData;
+                    unset($this->fauxTicketData[$idx]);
+                    break;
+                }
+            }
+        }
+
+        if (empty($fauxData)) {
+            $idx = array_rand($this->fauxTicketData);
+            $fauxData = $this->fauxTicketData[$idx];
+            unset($this->fauxTicketData[$idx]);
+        }
+        
+        return $fauxData;
     }
 }

@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { fetchData } from "../../includes/utils";
 import { 
     FETCH_TICKETS,
     GENERATE_TICKETS
 } from "../../includes/paths";
+import { MODE } from "../../includes/consts";
 
+import { ModeContext } from "../ModeContext";
 import Nav from "./Nav";
 import Sidebar from "./Sidebar";
 import Queue from "./Queue/Queue";
 
 export default function ServiceBoard(props) {
+    const mode = useContext(ModeContext);
     const [tickets, setTickets] = useState([]);
-
-    // TODO: once the tickets are fetched, they should just be const
-    // probable useRef for these. tickets is the only thing that really needs
-    // to have changeable state
-    const [fauxTickets, setFauxTickets] = useState([]);
-    const [loadingTickets, setLoadingTickets] = useState(true);
-    const [loadingFauxTickets, setLoadingFauxTickets] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchTickets();
-        fetchFauxTickets();
+        if (mode === MODE.DEMO) {
+            fetchFauxTickets();
+        } else {
+            // Just FYI, if this gets called in demo mode, it'll just
+            // return a 401 response
+            fetchTickets();
+        }
     }, []);
 
     // TODO: display loader
@@ -31,7 +33,7 @@ export default function ServiceBoard(props) {
         try {
             const tickets = await fetchData(url);
             setTickets(tickets);
-            setLoadingTickets(false);
+            setLoading(false);
         } catch (e) {
             setError('Error: could not fetch ticket data');
             console.error(e);
@@ -42,8 +44,8 @@ export default function ServiceBoard(props) {
         const url = GENERATE_TICKETS + '/20';
         try {
             const fauxTickets = await fetchData(url);
-            setFauxTickets(fauxTickets);
-            setLoadingFauxTickets(false);
+            setTickets(fauxTickets);
+            setLoading(false);
         } catch (e) {
             setError('Error: could not fetch ticket data');
             console.error(e);
@@ -57,7 +59,7 @@ export default function ServiceBoard(props) {
                 <Sidebar />
                 <Queue
                     tickets={tickets}
-                    loading={loadingTickets}
+                    loading={loading}
                     error={error}
                 />
             </div>

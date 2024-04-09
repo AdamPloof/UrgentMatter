@@ -4,10 +4,10 @@ import TableLoader from "../TableLoader";
 import AgentSelect from "./AgentSelect";
 import StatusSelect from "./StatusSelect";
 import { ticketKey, ticketType, sla } from "../../../includes/utils";
-import { TICKET_DETAIL } from "../../../includes/paths";
+import { TICKET_DETAIL, TICKET_DETAIL_DEMO } from "../../../includes/paths";
 import { 
     TICKET_STATUS,
-    URGENCY_MAP
+    URGENCY_MAP,
 } from "../../../includes/consts";
 
 export default function QueueTable(props) {
@@ -74,14 +74,18 @@ function ticketRow(ticket, ticketIdx, ticketsArr) {
 }
 
 /**
- * TODO: This should link to the ticket view (not yet created)
- * the base path for the ticket should come from paths.js
- * 
  * @param {Element} ticket 
  */
 function ticketSummary(ticket) {
+    let ticketUrl;
+    if (ticket.faux) {
+        ticketUrl = `${TICKET_DETAIL_DEMO}/${ticket.id}`;
+    } else {
+        ticketUrl = `${TICKET_DETAIL}/${ticket.id}`;
+    }
+
     return (
-        <a className="queue-link" href={`${TICKET_DETAIL}/${ticket.id}`}>{ticket.subject}</a>
+        <a className="queue-link" href={ticketUrl}>{ticket.subject}</a>
     );
 }
 

@@ -1,5 +1,13 @@
-import React from "react";
-import { LOGIN, LOGOUT, AGENTS } from "../../includes/paths";
+import React, { useContext } from "react";
+import { ModeContext } from "../ModeContext";
+import { 
+    SERVICE_BOARD,
+    SERVICE_BOARD_DEMO,
+    LOGIN,
+    LOGOUT,
+    AGENTS
+} from "../../includes/paths";
+import { MODE } from "../../includes/consts";
 
 function dropdowMenu(title, items) {
     return (
@@ -18,38 +26,51 @@ function dropdowMenu(title, items) {
     );
 }
 
+function demoBadge() {
+    return (
+        <div className="nav-demo-badge me-3">
+            Demo
+        </div>
+    );
+}
+
 function userInfo(username) {
     if (!username) {
         return (
-            <div class="log-link">
-                <a class="nav-link" href={LOGIN}>Login</a>
+            <div className="log-link">
+                <a className="nav-link" href={LOGIN}>Login</a>
             </div>
         );
     }
 
     return (
         <React.Fragment>
-            <div class="user-info d-flex flex-row pe-3 justify-content-center align-items-center">
-                <div class="user-avatar pe-2">
+            <div className="user-info d-flex flex-row pe-3 justify-content-center align-items-center">
+                <div className="user-avatar pe-2">
                     <img heigh="30" width="30" src={`${AGENTS}/jbergeron.jpg`} alt="Agent avatar" />
                 </div>
-                <div class="username">
+                <div className="username">
                     {username}
                 </div>
             </div>
-            <div class="log-link">
-                <a class="nav-link" href={LOGOUT}>Logout</a>
+            <div className="log-link">
+                <a className="nav-link" href={LOGOUT}>Logout</a>
             </div>
         </React.Fragment>
     );
 }
 
 export default function Nav(props) {
+    const mode = useContext(ModeContext);
+    const serviceBoardUrl = mode === MODE.DEMO ? SERVICE_BOARD_DEMO : SERVICE_BOARD;
+
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary service-board-nav">
             <div className="container-fluid">
                 <div className="nav-left">
-                    <span className="navbar-brand pb-0 h1 me-5">UrgentMatter <span className="text-muted">- Farewell Center</span></span>
+                    <a className="logo-link" href={serviceBoardUrl}>
+                        <span className="navbar-brand pb-0 h1 me-5">UrgentMatter <span className="text-muted">- Farewell Center</span></span>
+                    </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#serviceBoardNav" aria-controls="serviceBoardNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -79,6 +100,7 @@ export default function Nav(props) {
 
                 </div>
                 <div className="nav-right pe-3">
+                    {mode === MODE.DEMO ? demoBadge() : null}
                     {userInfo(props.username)}
                 </div>
             </div>

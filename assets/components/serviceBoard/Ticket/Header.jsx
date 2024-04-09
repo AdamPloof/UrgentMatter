@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ModeContext } from "../../ModeContext";
 import { ticketKey, ticketType } from "../../../includes/utils";
 import { 
     SERVICE_BOARD,
+    SERVICE_BOARD_DEMO,
     TICKET_DETAIL,
     ICONS
 } from "../../../includes/paths";
+import { MODE } from "../../../includes/consts";
 
 export default function Header(props) {
+    const mode = useContext(ModeContext);
+    const serviceBoardUrl = mode === MODE.DEMO ? SERVICE_BOARD_DEMO : SERVICE_BOARD;
     if (!props.ticket) {
         // TODO: return loader
         return;
@@ -15,7 +20,7 @@ export default function Header(props) {
     return (
         <div className="ticket-element ticket-element-borderless">
             <div className="ticket-nav">
-                {headerNav(props.ticket.id, props.hasPrev, props.hasNext)}
+                {headerNav(props.ticket.id, serviceBoardUrl, props.hasPrev, props.hasNext)}
             </div>
             <div className="ticket-title pt-2 pb-2">
                 <h2>{props.ticket.subject}</h2>
@@ -27,11 +32,11 @@ export default function Header(props) {
     );
 }
 
-function headerNav(ticketId, hasPrev, hasNext) {
+function headerNav(ticketId, serviceBoardUrl, hasPrev, hasNext) {
     return (
         <React.Fragment>
             <div className="nav-back">
-                <a href={SERVICE_BOARD} className="ps-2">
+                <a href={serviceBoardUrl} className="ps-2">
                     Back
                 </a>
             </div>

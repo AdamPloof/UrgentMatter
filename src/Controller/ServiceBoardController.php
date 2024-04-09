@@ -22,11 +22,30 @@ class ServiceBoardController extends AbstractController {
         ]);
     }
 
+    #[Route('/demo/service-board', name: 'service_board_demo')]
+    public function serviceBoardDemo(): Response {
+        return $this->render('service_board.html.twig', [
+            'title' => 'Urgent Matter - Service Board',
+            'disable_flash_msgs' => true,
+            'demo_mode' => true
+        ]);
+    }
+    
     #[Route('/service-board/view/{id}', name: 'view_ticket', requirements: ['id' => '\d+'])]
-    public function viewTicket(EntityManagerInterface $em, int $id): Response {
+    public function viewTicket(int $id): Response {
         return $this->render('ticket.html.twig', [
             'title' => 'Urgent Matter - Ticket',
             'ticket_id' => $id,
+            'disable_flash_msgs' => true
+        ]);
+    }
+
+    #[Route('/demo/service-board/view/{id}', name: 'view_ticket_demo', requirements: ['id' => '\d+'])]
+    public function viewTicketDemo(int $id): Response {
+        return $this->render('ticket.html.twig', [
+            'title' => 'Urgent Matter - Ticket',
+            'ticket_id' => $id,
+            'demo_mode' => true,
             'disable_flash_msgs' => true
         ]);
     }
@@ -38,6 +57,8 @@ class ServiceBoardController extends AbstractController {
         int $id
     ): Response {
         $ticketRepo = $em->getRepository(Ticket::class);
+
+        /** @var Ticket $ticket */
         $ticket = $ticketRepo->find($id);
         if (!$ticket) {
             $response = new Response(json_encode([
@@ -48,15 +69,13 @@ class ServiceBoardController extends AbstractController {
             );
         } else {
             $prevTicket = $ticketRepo->find($id - 1);
-            $nextTicket = $ticketRepo->find($id + 1);
+            $ticket->setHasPrev($prevTicket ? true : false);
 
-            // Yes, this is silly to encode, decode and re-encode the ticket.
-            // TODO: Fix the annoying circular refence problem so we don't have to do
-            // the encoding dance.
+            $nextTicket = $ticketRepo->find($id + 1);
+            $ticket->setHasNext($nextTicket ? true : false);
+
             $content = [
                 'ticket' => json_decode($serializer->serialize([$ticket]), true)[0],
-                'hasPrev' => $prevTicket ? true : false,
-                'hasNext' => $nextTicket ? true : false,
             ];
             $response = new Response(
                 json_encode($content),
@@ -89,6 +108,25 @@ class ServiceBoardController extends AbstractController {
         $tickets = $generator->generate($num);
         $response = new Response(
             $serializer->serialize($tickets),
+            200,
+            ['Content-Type' => 'application/json']
+        );
+
+        return $response;
+    }
+
+    #[Route('/service-board/generate-one/{id}', name: 'service_board_generate_one', requirements: ['id' => '\d+'])]
+    public function generateOne(
+        TicketSerializer $serializer,
+        TicketGenerator $generator,
+        int $id = 0
+    ): Response {
+        /** @var Ticket $ticket */
+        $ticket = $generator->generateOne($id);
+        $ticket->setHasPrev(true);
+        $ticket->setHasNext(true);
+        $response = new Response(
+            $serializer->serialize(['ticket' => $ticket]),
             200,
             ['Content-Type' => 'application/json']
         );

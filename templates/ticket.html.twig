@@ -6,7 +6,15 @@
     {% set username = '' %}
 {% endif %}
 
+{% if demo_mode is not defined %}
+    {% set demo_mode = false %}
+{% endif %}
+
 {% block body %}
     {# React component #}
-    <div id="ticket-component" data-username="{{ username }}" data-ticket-id="{{ ticket_id }}"></div>
+    <div id="ticket-component"
+        data-username="{{ username }}"
+        data-ticket-id="{{ ticket_id }}"
+        data-demo-mode="{{ demo_mode }}"
+    ></div>
 {% endblock %}

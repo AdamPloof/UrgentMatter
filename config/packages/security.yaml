@@ -37,6 +37,8 @@ security:
         - { path: ^/$, roles: PUBLIC_ACCESS }
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/portal, roles: PUBLIC_ACCESS }
+        - { path: ^/demo/*, roles: PUBLIC_ACCESS }
+        - { path: ^/service-board/generate*, roles: PUBLIC_ACCESS }
         - { path: ^/*, roles: ROLE_USER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { fetchData } from "../../../includes/utils";
-import { FETCH_TICKET } from "../../../includes/paths";
+import { FETCH_TICKET, GENERATE_TICKET } from "../../../includes/paths";
+import { MODE } from "../../../includes/consts";
+import { ModeContext } from "../../ModeContext";
 import Nav from "../Nav";
 import Sidebar from "../Sidebar";
 import TicketSidebar from "./TicketSidebar";
@@ -8,9 +10,8 @@ import Header from "./Header";
 import Body from "./Body";
 
 export default function Ticket(props) {
+    const mode = useContext(ModeContext);
     const [ticket, setTicket] = useState(null);
-    const [hasPrev, setHasPrev] = useState(false);
-    const [hasNext, setHasNext] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -19,12 +20,17 @@ export default function Ticket(props) {
     }, []);
 
     const fetchTicket = async () => {
-        const url = `${FETCH_TICKET}/${props.ticketId}`;
+        let url;
+        if (mode === MODE.DEMO) {
+            url = `${GENERATE_TICKET}/${props.ticketId}`;
+        } else {
+            // Throws 401 if in demo mode
+            url = `${FETCH_TICKET}/${props.ticketId}`;
+        }
+
         try {
             const ticketData = await fetchData(url);
             setTicket(ticketData.ticket);
-            setHasPrev(ticketData.hasPrev);
-            setHasNext(ticketData.hasNext);
             setLoading(false);
         } catch (e) {
             setError('Error: could not fetch ticket data');
@@ -34,15 +40,15 @@ export default function Ticket(props) {
 
     return (
         <React.Fragment>
-            <Nav />
+            <Nav username={props.username} />
             <div className="ticket-layout">
                 <Sidebar />
                 <div className="ticket-container">
                     <div className="ticket-content">
                         <div className="ticket-element-wrapper">
                             <Header
-                                hasPrev={hasPrev}
-                                hasNext={hasNext}
+                                hasPrev={ticket ? ticket.prev : false}
+                                hasNext={ticket ? ticket.next : false}
                                 loading={loading}
                                 ticket={ticket}
                             />

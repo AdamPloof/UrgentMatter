@@ -1,19 +1,28 @@
-import React from "react";
-import { ICONS } from "../../includes/paths";
+import React, { useContext } from "react";
+import { ICONS, SERVICE_BOARD, SERVICE_BOARD_DEMO } from "../../includes/paths";
+import { ModeContext } from "../ModeContext";
+import { MODE } from "../../includes/consts";
 
 export default function Sidebar(props) {
+    const mode = useContext(ModeContext);
+    const serviceBoardUrl = mode === MODE.DEMO ? SERVICE_BOARD_DEMO : SERVICE_BOARD;
+
     return (
         <div className="service-board-sidebar">
             <div className="sb-header">
                 <div className="header-title">
-                    <h3>IT salute desk</h3>
+                    <a href={serviceBoardUrl}>
+                        <h3>IT salute desk</h3>
+                    </a>
                 </div>
                 <div className="header-body">
                     <div className="header-logo">
                         <img width="40" src={`${ICONS}/logo_death_star.png`} alt="Death start logo"></img>
                     </div>
                     <div className="header-description">
-                        <span>Farewell project</span>
+                        <a href={serviceBoardUrl}>
+                            <span>Farewell project</span>
+                        </a>
                     </div>
                 </div>
             </div>
