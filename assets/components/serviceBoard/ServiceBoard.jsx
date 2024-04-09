@@ -9,7 +9,7 @@ import Nav from "./Nav";
 import Sidebar from "./Sidebar";
 import Queue from "./Queue/Queue";
 
-export default function ServiceBoard() {
+export default function ServiceBoard(props) {
     const [tickets, setTickets] = useState([]);
 
     // TODO: once the tickets are fetched, they should just be const
@@ -52,7 +52,7 @@ export default function ServiceBoard() {
 
     return (
         <React.Fragment>
-            <Nav />
+            <Nav username={props.username} />
             <div className="service-board-layout">
                 <Sidebar />
                 <Queue

@@ -9,13 +9,18 @@ function main() {
 
     const serviceBoardContainer = document.getElementById('service-board-component');
     if (serviceBoardContainer) {
-        component = <ServiceBoard />;
+        component = <ServiceBoard 
+            username={serviceBoardContainer.dataset.username}
+        />;
         targetContainer = serviceBoardContainer;
     }
 
     const ticketContainer = document.getElementById('ticket-component');
     if (ticketContainer) {
-        component = <Ticket ticketId={ticketContainer.dataset.ticketId} />;
+        component = <Ticket
+            ticketId={ticketContainer.dataset.ticketId}
+            username={ticketContainer.dataset.username}
+        />;
         targetContainer = ticketContainer;
     }
 

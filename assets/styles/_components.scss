@@ -61,12 +61,24 @@ img.agent-img {
 
 .avatar-picker {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    // grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+
+    @media screen and (min-width: 540px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media screen and (min-width: 720px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    // @media screen and (min-width: 1200px) {
+    //     grid-template-columns: 1fr 1fr 1fr 1fr;
+    // }
 }
 
 .avatar-option {

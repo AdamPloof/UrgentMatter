@@ -105,7 +105,8 @@ export const URGENCY_MAP = {
 };
 
 export const AGENT_AVATARS = [
-    {name: 'JBergeron', img: 'jerry.jpg', alt: 'Jerry agent image'},
+    {name: 'JBergeron', img: 'jbergeron.jpg', alt: 'John agent image'},
+    {name: 'JSeinfeld', img: 'jerry.jpg', alt: 'Jerry agent image'},
     {name: 'GConstanza', img: 'george.jpg', alt: 'George agent image'},
     {name: 'CKramer', img: 'kramer.jpg', alt: 'Kramer agent image'},
     {name: 'EBenis', img: 'elaine.jpg', alt: 'Elaine agent image'},

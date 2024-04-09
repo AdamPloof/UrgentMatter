@@ -8,3 +8,5 @@ export const GENERATE_TICKETS = base + 'service-board/generate';
 export const ICONS = base + 'build/images/icons';
 export const AVATARS = base + 'build/images/avatars';
 export const AGENTS = base + 'build/images/agents';
+export const LOGIN = 'login';
+export const LOGOUT = 'logout';

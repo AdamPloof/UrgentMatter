@@ -3,7 +3,13 @@
     {% include "includes/portal_nav.html.twig" %}
 {% endblock %} #}
 
+{% if app.user %}
+    {% set username = app.user.username %}
+{% else %}
+    {% set username = '' %}
+{% endif %}
+
 {% block body %}
     {# React component #}
-    <div id="service-board-component"></div>
+    <div data-username="{{ username }}" id="service-board-component"></div>
 {% endblock %}

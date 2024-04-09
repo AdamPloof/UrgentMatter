@@ -1,4 +1,5 @@
 import React from "react";
+import { LOGIN, LOGOUT, AGENTS } from "../../includes/paths";
 
 function dropdowMenu(title, items) {
     return (
@@ -14,6 +15,32 @@ function dropdowMenu(title, items) {
             </ul>
         </li>
 
+    );
+}
+
+function userInfo(username) {
+    if (!username) {
+        return (
+            <div class="log-link">
+                <a class="nav-link" href={LOGIN}>Login</a>
+            </div>
+        );
+    }
+
+    return (
+        <React.Fragment>
+            <div class="user-info d-flex flex-row pe-3 justify-content-center align-items-center">
+                <div class="user-avatar pe-2">
+                    <img heigh="30" width="30" src={`${AGENTS}/jbergeron.jpg`} alt="Agent avatar" />
+                </div>
+                <div class="username">
+                    {username}
+                </div>
+            </div>
+            <div class="log-link">
+                <a class="nav-link" href={LOGOUT}>Logout</a>
+            </div>
+        </React.Fragment>
     );
 }
 
@@ -51,8 +78,8 @@ export default function Nav(props) {
                     </div>
 
                 </div>
-                <div className="nav-right">
-                    <span>JBergeron</span>
+                <div className="nav-right pe-3">
+                    {userInfo(props.username)}
                 </div>
             </div>
         </nav>
