@@ -10,12 +10,17 @@ import { ModeContext } from "../ModeContext";
 import Nav from "./Nav";
 import Sidebar from "./Sidebar";
 import Queue from "./Queue/Queue";
+import EasterEggModal from "./EasterEggModal";
 
 export default function ServiceBoard(props) {
     const mode = useContext(ModeContext);
     const [tickets, setTickets] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const [showEasterEgg, setShowEasterEgg] = useState(false);
+    const [easterEggTitle, setEasterEggTitle] = useState('');
+    const [easterEggContent, setEasterEggContent] = useState(null);
 
     useEffect(() => {
         if (mode === MODE.DEMO) {
@@ -52,9 +57,18 @@ export default function ServiceBoard(props) {
         }
     };
 
+    const handleCloseEasterEgg = () => {
+        setShowEasterEgg(false);
+    };
+
     return (
         <React.Fragment>
-            <Nav username={props.username} />
+            <Nav
+                username={props.username}
+                setShowEasterEgg={setShowEasterEgg}
+                setEasterEggTitle={setEasterEggTitle}
+                setEasterEggContent={setEasterEggContent}
+            />
             <div className="service-board-layout">
                 <Sidebar />
                 <Queue
@@ -63,6 +77,12 @@ export default function ServiceBoard(props) {
                     error={error}
                 />
             </div>
+            <EasterEggModal
+                title={easterEggTitle}
+                content={easterEggContent}
+                show={showEasterEgg}
+                handleClose={handleCloseEasterEgg}
+            />
         </React.Fragment>
     );
 }

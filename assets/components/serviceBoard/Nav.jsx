@@ -60,6 +60,12 @@ function userInfo(username) {
     );
 }
 
+function easterEggDefault() {
+    return (
+        <div className="easter-egg-content">Is that all you got?</div>
+    );
+}
+
 export default function Nav(props) {
     const mode = useContext(ModeContext);
     const serviceBoardUrl = mode === MODE.DEMO ? SERVICE_BOARD_DEMO : SERVICE_BOARD;
@@ -77,7 +83,17 @@ export default function Nav(props) {
                     <div className="collapse navbar-collapse" id="serviceBoardNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Your work</a>
+                                <a 
+                                    className="nav-link active"
+                                    aria-current="page"
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        props.setEasterEggTitle('The never ending story');
+                                        props.setEasterEggContent(easterEggDefault());
+                                        props.setShowEasterEgg(true);
+                                    }}
+                                >Your work</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Projects</a>
