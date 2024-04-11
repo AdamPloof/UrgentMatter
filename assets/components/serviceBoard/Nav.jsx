@@ -95,8 +95,13 @@ const recentWork = (
 );
 
 const futureWork = (
-    <div className="easter-egg-content">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/terB-PBT3c4?si=3g5kTBshjzdSy-3a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div className="easter-egg-content nsfw">
+        <div className="nsfw-content">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/terB-PBT3c4?si=3g5kTBshjzdSy-3a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div className="nsfw-message">
+            This easter egg probably isn't safe for work :)
+        </div>
     </div>
 );
 
@@ -107,8 +112,13 @@ const computerWork = (
 );
 
 const fireSafetyWork = (
-    <div className="easter-egg-content">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/f5NRGlamFSE?si=_v8km7-S4bA8SVSF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div className="easter-egg-content nsfw">
+        <div className="nsfw-content">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/f5NRGlamFSE?si=_v8km7-S4bA8SVSF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div className="nsfw-message">
+            This easter egg probably isn't safe for work :)
+        </div>
     </div>
 );
 
@@ -235,7 +245,7 @@ export default function Nav(props) {
                     }
                 },
                 {
-                    description: 'Distant past',
+                    description: 'Future',
                     click: (e) => {
                         e.preventDefault();
                         props.setEasterEggTitle('Give him the stick');

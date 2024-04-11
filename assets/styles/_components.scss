@@ -623,5 +623,30 @@ table.queue-table {
     .modal-body,
     .easter-egg-content {
         width: fit-content;
+
+        .nsfw-message {
+            display: none;
+        }
+    }
+
+    .easter-egg-content.nsfw {
+        .nsfw-content {
+            display: block;
+        }
+    
+        .nsfw-message {
+            display: none;
+        }        
+    }
+
+    &.easter-egg-demo .easter-egg-content.nsfw {
+        .nsfw-content {
+            display: none;
+        }
+    
+        .nsfw-message {
+            display: block;
+        }
     }
 }
+
