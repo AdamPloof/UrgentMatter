@@ -1,11 +1,72 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ICONS, SERVICE_BOARD, SERVICE_BOARD_DEMO } from "../../includes/paths";
 import { ModeContext } from "../ModeContext";
 import { MODE } from "../../includes/consts";
+import { randInt } from "../../includes/utils";
 
 export default function Sidebar(props) {
     const mode = useContext(ModeContext);
     const serviceBoardUrl = mode === MODE.DEMO ? SERVICE_BOARD_DEMO : SERVICE_BOARD;
+
+    const [openCount, setOpenCount] = useState(41);
+    const [assignedCount, setAssignedCount] = useState(props.ticketCount);
+    const [unassignedCount, setUnassignedCount] = useState(10);
+    const [ignoreCount, setIgnoreCount] = useState(15);
+    const [closedCount, setClosedCount] = useState(7);
+
+    const coinToss = () => {
+        const coin = Math.floor(Math.random() * 2);
+        return coin === 1;
+    };
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            if (coinToss()) {
+                setOpenCount((openCount) => {
+                    return openCount + randInt(16);
+                });
+            }
+
+            if (coinToss()) {
+                setAssignedCount((assignedCount) => {
+                    return assignedCount + randInt(12);
+                });
+            }
+
+            if (coinToss()) {
+                setUnassignedCount((unassignedCount) => {
+                    return unassignedCount + randInt(6);
+                });
+            }
+
+            if (coinToss()) {
+                setIgnoreCount((ignoreCount) => {
+                    return ignoreCount + randInt(9);
+                });
+            }
+
+            if (coinToss()) {
+                setClosedCount((closedCount) => {
+                    return closedCount - randInt(3);
+                });
+            }
+        }, 4000);
+    }, []);
+
+    const badgeClass = (count) => {
+        let badgeClass = 'badge rounded-pill';
+        if (count < 25) {
+            return badgeClass;
+        } else if (count < 50) {
+            badgeClass += ' text-bg-info';
+        } else if (count < 75) {
+            badgeClass += ' text-bg-warning';
+        } else if (count >= 75) {
+            badgeClass += ' text-bg-danger';
+        }
+
+        return badgeClass;
+    }
 
     return (
         <div className="service-board-sidebar">
@@ -31,20 +92,45 @@ export default function Sidebar(props) {
                     <h5>Queues</h5>
                 </div>
                 <div className="section-body">
-                    <div className="sb-item">
-                        <a className="sb-link" href="#">All open</a>
+                    <div className="sb-item d-flex justify-content-between">
+                        <div className="sb-item-left">
+                            <a className="sb-link" href="#">All open</a>
+                        </div>
+                        <div className="sb-item-right">
+                            <span className={badgeClass(openCount)}>{openCount}</span>
+                        </div>
                     </div>
-                    <div className="sb-item active">
-                        <a className="sb-link" href="#">Assigned to me</a>
+                    <div className="sb-item justify-content-between active">
+                        <div className="sb-item-left">
+                            <a className="sb-link" href="#">Assigned to me</a>
+                        </div>
+                        <div className="sb-item-right">
+                            <span className={badgeClass(assignedCount)}>{assignedCount}</span>
+                        </div>
                     </div>
-                    <div className="sb-item">
-                        <a className="sb-link" href="#">Unassigned</a>
+                    <div className="sb-item justify-content-between">
+                        <div className="sb-item-left">
+                            <a className="sb-link" href="#">Unassigned</a>
+                        </div>
+                        <div className="sb-item-right">
+                            <span className={badgeClass(unassignedCount)}>{unassignedCount}</span>
+                        </div>
                     </div>
-                    <div className="sb-item">
-                        <a className="sb-link" href="#">Ignore forever</a>
+                    <div className="sb-item justify-content-between">
+                        <div className="sb-item-left">
+                            <a className="sb-link" href="#">Ignore forever</a>
+                        </div>
+                        <div className="sb-item-right">
+                            <span className={badgeClass(ignoreCount)}>{ignoreCount}</span>
+                        </div>
                     </div>
-                    <div className="sb-item">
-                        <a className="sb-link" href="#">All closed</a>
+                    <div className="sb-item justify-content-between">
+                        <div className="sb-item-left">
+                            <a className="sb-link" href="#">All closed</a>
+                        </div>
+                        <div className="sb-item-right">
+                            <span className={badgeClass(closedCount)}>{closedCount}</span>
+                        </div>
                     </div>
                 </div>
             </div>

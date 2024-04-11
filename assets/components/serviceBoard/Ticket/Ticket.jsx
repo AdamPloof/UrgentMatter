@@ -8,12 +8,17 @@ import Sidebar from "../Sidebar";
 import TicketSidebar from "./TicketSidebar";
 import Header from "./Header";
 import Body from "./Body";
+import EasterEggModal from "../EasterEggModal";
 
 export default function Ticket(props) {
     const mode = useContext(ModeContext);
     const [ticket, setTicket] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const [showEasterEgg, setShowEasterEgg] = useState(false);
+    const [easterEggTitle, setEasterEggTitle] = useState('');
+    const [easterEggContent, setEasterEggContent] = useState(null);
 
     useEffect(() => {
         fetchTicket();
@@ -38,11 +43,21 @@ export default function Ticket(props) {
         }
     };
 
+    const handleCloseEasterEgg = () => {
+        setShowEasterEgg(false);
+    };
+
     return (
         <React.Fragment>
-            <Nav username={props.username} />
+            <Nav
+                username={props.username}
+                setShowEasterEgg={setShowEasterEgg}
+                setEasterEggTitle={setEasterEggTitle}
+                setEasterEggContent={setEasterEggContent}
+            />
             <div className="ticket-layout">
-                <Sidebar />
+                {/* TODO get ticket count from somewhere */}
+                <Sidebar ticketCount={23} />
                 <div className="ticket-container">
                     <div className="ticket-content">
                         <div className="ticket-element-wrapper">
@@ -60,6 +75,12 @@ export default function Ticket(props) {
                     <TicketSidebar loading={loading} ticket={ticket} />
                 </div>
             </div>
+            <EasterEggModal
+                title={easterEggTitle}
+                content={easterEggContent}
+                show={showEasterEgg}
+                handleClose={handleCloseEasterEgg}
+            />
         </React.Fragment>
     );
 }

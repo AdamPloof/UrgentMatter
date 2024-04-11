@@ -11,5 +11,6 @@ export const GENERATE_TICKET = base + 'service-board/generate-one';
 export const ICONS = base + 'build/images/icons';
 export const AVATARS = base + 'build/images/avatars';
 export const AGENTS = base + 'build/images/agents';
+export const EASTER_EGGS = base + 'build/images/easter_eggs';
 export const LOGIN = base + 'login';
 export const LOGOUT = base + 'logout';

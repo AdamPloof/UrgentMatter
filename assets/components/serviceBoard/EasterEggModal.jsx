@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 export default function EasterEggModal(props) {
     return (
         <>
-            <Modal show={props.show} onHide={props.handleClose}>
+            <Modal show={props.show} onHide={props.handleClose} className="easter-egg-modal" >
                 <Modal.Header closeButton>
                     <Modal.Title>{props.title}</Modal.Title>
                 </Modal.Header>

@@ -70,7 +70,7 @@ export default function ServiceBoard(props) {
                 setEasterEggContent={setEasterEggContent}
             />
             <div className="service-board-layout">
-                <Sidebar />
+                <Sidebar ticketCount={tickets.length} />
                 <Queue
                     tickets={tickets}
                     loading={loading}

@@ -617,3 +617,11 @@ table.queue-table {
         }
     }
 }
+
+.easter-egg-modal {
+    .modal-content,
+    .modal-body,
+    .easter-egg-content {
+        width: fit-content;
+    }
+}
