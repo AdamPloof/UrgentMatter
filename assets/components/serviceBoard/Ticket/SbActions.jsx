@@ -159,18 +159,14 @@ function warpPenultimate() {
     const shift = [
         // keyframes
         { transform: "translateY(0px)" },
-        { transform: "translateY(-300px)" },
-        { transform: "translateY(-200px)" },
+        { transform: "translateY(-300px) translateX(200px)" },
         { transform: "translateY(400px) translateX(-300px)" },
         { transform: "translateY(-100px)" },
         { transform: "translateY(-500px) translateX(-600px)" },
-        { transform: "translateY(0px)" },
-        { transform: "translateY(300px) translateX(700px)" },
-        { transform: "translateY(-400px) translateX(-300px)" },
-        { transform: "translateY(100px)" },
+        { transform: "translateY(100px) translateX(900px)" },
         { transform: "translateY(-500px) translateX(600px)" },
         { transform: "translateY(0px)" },
-        { transform: "translateY(-300px) translateX(-700px)" },
+        { transform: "translateY(-1300px) translateX(-1700px)" },
     ];
     const timing= {
         // timing options

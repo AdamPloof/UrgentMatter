@@ -8,6 +8,7 @@ import Sidebar from "../Sidebar";
 import TicketSidebar from "./TicketSidebar";
 import Header from "./Header";
 import Body from "./Body";
+import Comments from "./Comments";
 import EasterEggModal from "../EasterEggModal";
 
 export default function Ticket(props) {
@@ -79,6 +80,7 @@ export default function Ticket(props) {
                         </div>
                         <div className="ticket-element-wrapper">
                             <Body loading={loading} ticket={ticket} />
+                            <Comments submitter={ticket ? ticket.submitter : ''} />
                         </div>
                     </div>
                     <TicketSidebar

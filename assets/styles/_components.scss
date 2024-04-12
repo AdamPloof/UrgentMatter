@@ -650,3 +650,13 @@ table.queue-table {
     }
 }
 
+.comment-msg {
+    padding: 1rem;
+    font-size: 90%;
+    border-bottom: $border-main;
+
+    &:last-of-type {
+        border-bottom: none;
+    }
+}
+

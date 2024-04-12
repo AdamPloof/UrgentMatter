@@ -163,3 +163,26 @@ export const ALTERNATE_REALITY_TICKETS = [
     "Hello, I was about to submit a ticket regarding [specific issue] but found some well written documentionat that described exactly what I was looking for. I had to take the time to actually read it but I fonud the experience enriching. Anyway, just wanted to say thanks for the useful info!",
     "Kid: Hey Kevvinnnnnn\r\nKid2: How do we play this game\r\nGiJoe17: I'm glad you guys skipped class today, we're having fun aren't we?\r\nKid: I wan't to play video games\r\nGiJoe17: We had a good conversation ahahaha I don't understand, you, You're the ringleader ov she va dava dala WWOOOOOO adowava a didda and go and get in there howahahahhwa you get back to school you understand owavahhwa you get back into school you understadn awaahehuhyouhavenobusinessinherehuhwaa *breaths*\r\nKid3: Hey Wa what's going on what the hell?\r\nKid: I wan't to get in the fridge too.",
 ];
+
+export const COMMENTS = [
+    'Is this thing done yet?',
+    'Thank you!',
+    'I did\'t read the last thing you said, can you say it again?',
+    'Still a problem.',
+    'Nope.',
+    'Still can\'t DT or SE',
+    'I already tried that',
+    'Yes, I turned it off and back on again.',
+    'I don\'t know what that is or where it plugs into or even who I am',
+    '1:30\'s no good for me how about never? Is never good for you?',
+    'I\'ll be at my desk in 30 minutes. If you need to reach me you can wait there patiently until then',
+    'It\'s broken again',
+    'Do you have any spares while I wait?',
+    'What kinda deals can you get on these things?',
+    'My car also just died, are you good with those too?',
+    'Sorry, phone was out, and email down, and I don\'t like to read. so...',
+    'Hey kid! I\'m a computer!',
+    'Stop all the downloadin',
+    'forgot to mention, I spilled some french fries in this thing too',
+    'This elevator only goes to the third floor. And someone made an awful mess down there'
+];

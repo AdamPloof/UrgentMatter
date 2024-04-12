@@ -40,6 +40,16 @@ class ServiceBoardController extends AbstractController {
         ]);
     }
 
+    #[Route('/service-board/view-faux/{id}', name: 'view_ticket_faux', requirements: ['id' => '\d+'])]
+    public function viewFauxTicket(int $id): Response {
+        return $this->render('ticket.html.twig', [
+            'title' => 'Urgent Matter - Ticket',
+            'ticket_id' => $id,
+            'demo_mode' => false,
+            'disable_flash_msgs' => true
+        ]);
+    }
+
     #[Route('/demo/service-board/view/{id}', name: 'view_ticket_demo', requirements: ['id' => '\d+'])]
     public function viewTicketDemo(int $id): Response {
         return $this->render('ticket.html.twig', [

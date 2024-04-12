@@ -1,5 +1,4 @@
 import React from "react";
-
 import TableLoader from "../TableLoader";
 import AgentSelect from "./AgentSelect";
 import StatusSelect from "./StatusSelect";

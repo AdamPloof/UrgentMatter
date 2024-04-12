@@ -115,11 +115,14 @@ export default function Sidebar(props) {
                                 href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    props.setActiveQueue('open');
                                     if (props.linkMode) {
                                         window.location = serviceBoardUrl;
                                     }
-                                    handleChangeTickets('open');
+
+                                    if (props.setActiveQueue) {
+                                        props.setActiveQueue('open');
+                                        handleChangeTickets('open');
+                                    }
                                 }}
                             >All open</a>
                         </div>
@@ -134,11 +137,14 @@ export default function Sidebar(props) {
                                 href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    props.setActiveQueue('assigned');
                                     if (props.linkMode) {
                                         window.location = serviceBoardUrl;
                                     }
-                                    handleChangeTickets('assigned');
+
+                                    if (props.setActiveQueue) {
+                                        props.setActiveQueue('assigned');
+                                        handleChangeTickets('assigned');
+                                    }
                                 }}
                             >Assigned to me</a>
                         </div>
@@ -153,11 +159,14 @@ export default function Sidebar(props) {
                                 href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    props.setActiveQueue('unassigned');
                                     if (props.linkMode) {
                                         window.location = serviceBoardUrl;
                                     }
-                                    handleChangeTickets('unassigned');
+
+                                    if (props.setActiveQueue) {
+                                        props.setActiveQueue('unassigned');
+                                        handleChangeTickets('unassigned');
+                                    }
                                 }}
                             >Unassigned</a>
                         </div>
@@ -172,11 +181,14 @@ export default function Sidebar(props) {
                                 href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    props.setActiveQueue('ignore');
                                     if (props.linkMode) {
                                         window.location = serviceBoardUrl;
                                     }
-                                    handleChangeTickets('ignore');
+
+                                    if (props.setActiveQueue) {
+                                        props.setActiveQueue('ignore');
+                                        handleChangeTickets('ignore');
+                                    }
                                 }}
                             >Ignore forever</a>
                         </div>
@@ -191,11 +203,14 @@ export default function Sidebar(props) {
                                 href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    props.setActiveQueue('closed');
                                     if (props.linkMode) {
                                         window.location = serviceBoardUrl;
                                     }
-                                    handleChangeTickets('closed');
+
+                                    if (props.setActiveQueue) {
+                                        props.setActiveQueue('closed');
+                                        handleChangeTickets('closed');
+                                    }
                                 }}
                             >All closed</a>
                         </div>
