@@ -117,3 +117,49 @@ export const AGENT_AVATARS = [
     {name: 'EBenis', img: 'elaine.jpg', alt: 'Elaine agent image'},
     {name: 'Unassigned', img: 'unassigned.svg', alt: 'Unassigned agent image'},
 ];
+
+export const REQUEST_TYPES = [
+    'Stopped at coffee station',
+    'Jumped in the hallway',
+    'Phone call to personal phone',
+    'Unsolicited person email',
+    'Shouted from across parking lot',
+    'Submitted via portal... JK!',
+    'Called cell phone at 5:00am',
+    'Semi-coherent grunt'
+];
+
+export const PRODUCT_CATEGORIES = [
+    'Printer corpse',
+    'Some junk from the 80s',
+    'Sharepoint, always Sharepoint',
+    'SMS is dead, long live SMS',
+    'Microwave oven',
+    'M720Q... we still have these??',
+    'Elevator buttons',
+    'Email or something',
+    'Server',
+    'It\'s probably phishing',
+    'Excel',
+    'Mainframe'
+];
+
+export const OPERATIONAL_CATEGORIES = [
+    'Not my problem',
+    'They could\'ve just googled it',
+    'Is down',
+    'Forgot password and own name',
+    'Security lol',
+    'Busted again',
+    'Need to sell on Ebay',
+    'Euthanization required',
+    'Make this do what it obviously can\'t',
+    'Make this do what it already does'
+];
+
+export const ALTERNATE_REALITY_TICKETS = [
+    "Hey IT Crew, I'm having an issue with my [insert specific application name and version here]. The problem I've been having is [describes problem in appropriate detail]. \r\n I've tried [the following well thought out troubleshooting steps] but that didn't seem to work. \r\n Do you have any other suggestions for what I might try next? If needed I can be available for an on-site visit. I realize you have limited time so here is my availability [lists open schedule times] and other ways you can reach me [phone, email, that stuff].\r\n Thank you! \r\n [Sensible person]",
+    "Hi there, I just wanted to keep you informed that we encountered the [specific problem] today. Fortunately, we were able to fix it ourselves by [describes reasonable solution]. Just thought you might like to know for your records, thanks!",
+    "Hello, I was about to submit a ticket regarding [specific issue] but found some well written documentionat that described exactly what I was looking for. I had to take the time to actually read it but I fonud the experience enriching. Anyway, just wanted to say thanks for the useful info!",
+    "Kid: Hey Kevvinnnnnn\r\nKid2: How do we play this game\r\nGiJoe17: I'm glad you guys skipped class today, we're having fun aren't we?\r\nKid: I wan't to play video games\r\nGiJoe17: We had a good conversation ahahaha I don't understand, you, You're the ringleader ov she va dava dala WWOOOOOO adowava a didda and go and get in there howahahahhwa you get back to school you understand owavahhwa you get back into school you understadn awaahehuhyouhavenobusinessinherehuhwaa *breaths*\r\nKid3: Hey Wa what's going on what the hell?\r\nKid: I wan't to get in the fridge too.",
+];

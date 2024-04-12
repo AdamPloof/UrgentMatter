@@ -133,4 +133,9 @@ class ServiceBoardController extends AbstractController {
 
         return $response;
     }
+
+    // #[Route('/service-board/download', name: 'download')]
+    // public function downloadTickets(EntityManagerInterface $em): Response {
+
+    // }
 }

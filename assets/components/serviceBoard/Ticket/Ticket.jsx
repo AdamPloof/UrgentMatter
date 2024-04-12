@@ -57,7 +57,12 @@ export default function Ticket(props) {
             />
             <div className="ticket-layout">
                 {/* TODO get ticket count from somewhere */}
-                <Sidebar ticketCount={23} />
+                <Sidebar 
+                    ticketCount={23}
+                    setShowEasterEgg={setShowEasterEgg}
+                    setEasterEggTitle={setEasterEggTitle}
+                    setEasterEggContent={setEasterEggContent}
+                />
                 <div className="ticket-container">
                     <div className="ticket-content">
                         <div className="ticket-element-wrapper">
@@ -66,13 +71,22 @@ export default function Ticket(props) {
                                 hasNext={ticket ? ticket.next : false}
                                 loading={loading}
                                 ticket={ticket}
+                                setShowEasterEgg={setShowEasterEgg}
+                                setEasterEggTitle={setEasterEggTitle}
+                                setEasterEggContent={setEasterEggContent}
                             />
                         </div>
                         <div className="ticket-element-wrapper">
                             <Body loading={loading} ticket={ticket} />
                         </div>
                     </div>
-                    <TicketSidebar loading={loading} ticket={ticket} />
+                    <TicketSidebar
+                        loading={loading}
+                        ticket={ticket}
+                        setShowEasterEgg={setShowEasterEgg}
+                        setEasterEggTitle={setEasterEggTitle}
+                        setEasterEggContent={setEasterEggContent}
+                    />
                 </div>
             </div>
             <EasterEggModal

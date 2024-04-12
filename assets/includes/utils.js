@@ -102,6 +102,16 @@ export function randInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+/**
+ * Return a random element from an array
+ * 
+ * @param {array} arr 
+ * @return {str|int|float|null}
+ */
+export function randChoice(arr) {
+    return arr[randInt(arr.length)];
+}
+
 export function sidebarListItem(label, value) {
     return (
         <div className="sidebar-list-item">
@@ -109,4 +119,8 @@ export function sidebarListItem(label, value) {
             <div className="list-item-value">{value}</div>
         </div>
     );
+}
+
+export function uniqueKey() {
+    return "id" + Math.random().toString(16).slice(2);
 }

@@ -143,13 +143,31 @@ export default function Sidebar(props) {
                         <div className="sb-icon">
                             <img src={ICONS + '/icon_knowledge_base.svg'} alt="Knowledge base icon" />
                         </div>
-                        <a className="sb-link" href="#">Knowledge base</a>
+                        <a
+                            className="sb-link"
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                props.setEasterEggTitle('The more you know');
+                                props.setEasterEggContent(knowledgeBase);
+                                props.setShowEasterEgg(true);
+                            }}
+                        >Knowledge base</a>
                     </div>
                     <div className="sb-item">
                         <div className="sb-icon">
                             <img src={ICONS + '/icon_reports.svg'} alt="Reports icon" />
                         </div>
-                        <a className="sb-link" href="#">Reports</a>
+                        <a
+                            className="sb-link"
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                props.setEasterEggTitle('Gonna need that on my desk by 3 O\'Clock');
+                                props.setEasterEggContent(reports);
+                                props.setShowEasterEgg(true);
+                            }}
+                        >Reports</a>
                     </div>
                 </div>
             </div>
@@ -162,13 +180,31 @@ export default function Sidebar(props) {
                         <div className="sb-icon">
                             <img src={ICONS + '/icon_channels.svg'} alt="Channels icon" />
                         </div>
-                        <a className="sb-link" href="#">Channels</a>
+                        <a
+                            className="sb-link"
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                props.setEasterEggTitle('ABC, NBC, CBS, that\'s all we had');
+                                props.setEasterEggContent(channels);
+                                props.setShowEasterEgg(true);
+                            }}
+                        >Channels</a>
                     </div>
                     <div className="sb-item">
                         <div className="sb-icon">
                             <img src={ICONS + '/icon_customers.svg'} alt="Customers icon" />
                         </div>
-                        <a className="sb-link" href="#">Customers</a>
+                        <a
+                            className="sb-link"
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                props.setEasterEggTitle('Always put the customer 4th, right behind safety');
+                                props.setEasterEggContent(customers);
+                                props.setShowEasterEgg(true);
+                            }}
+                        >Customers</a>
                     </div>
                 </div>
             </div>
@@ -183,3 +219,27 @@ export default function Sidebar(props) {
         </div>
     );
 }
+
+const knowledgeBase = (
+    <div className="easter-egg-contenter">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/0qcED35LL8I?si=EWnGbnQeBJF6aOvq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+);
+
+const reports = (
+    <div className="easter-egg-contenter">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/AZMSAzZ76EU?si=2EcVNo9RTQXFeE7P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+);
+
+const channels = (
+    <div className="easter-egg-contenter">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/6i-nMWgBUp0?si=VevS2HHDVVDAYivD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+);
+
+const customers = (
+    <div className="easter-egg-contenter">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/wX9Sc88qreg?si=5coNlCxWbs_MP3qy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+);

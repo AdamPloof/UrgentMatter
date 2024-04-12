@@ -7,7 +7,11 @@ export default function TicketSidebar(props) {
     return (
         <div className="ticket-sidebar d-flex flex-column me-4">
             <div className="ticket-element-wrapper justify-content-end">
-                <SbActions />
+                <SbActions
+                    setShowEasterEgg={props.setShowEasterEgg}
+                    setEasterEggTitle={props.setEasterEggTitle}
+                    setEasterEggContent={props.setEasterEggContent}
+                />
             </div>
             <div className="ticket-element-wrapper">
                 <SbSLAs />

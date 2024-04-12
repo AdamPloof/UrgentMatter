@@ -1,8 +1,13 @@
 import React from "react";
 import SbCollapsibleElement from "./SbCollapsibleElement";
 import AgentSelect from "../Queue/AgentSelect";
-import { sidebarListItem } from "../../../includes/utils";
+import { sidebarListItem, randChoice } from "../../../includes/utils";
 import { AVATARS } from "../../../includes/paths";
+import {
+    REQUEST_TYPES,
+    PRODUCT_CATEGORIES,
+    OPERATIONAL_CATEGORIES
+} from "../../../includes/consts";
 
 export default function SbDetails(props) {
     return (
@@ -29,6 +34,7 @@ function content(ticket) {
             {/* TODO: randomize agent if auto-gen ticket */}
             {agent(ticket)}
             {submitter(ticket)}
+            {email(ticket)}
             {requestType()}
             {productCategorization()}
             {operationalCategorization()}
@@ -61,16 +67,23 @@ function submitter(ticket) {
     return sidebarListItem('Submitter', submitter);
 }
 
+function email(ticket) {
+    if (!ticket.email) {
+        return null;
+    }
+    return sidebarListItem('Stay in touch', ticket.email)
+}
+
 function requestType() {
-    return sidebarListItem('Request type', 'Coffee station request');
+    return sidebarListItem('Request type', randChoice(REQUEST_TYPES));
 }
 
 function productCategorization() {
-    return sidebarListItem('Product categorization', 'Not my problem');
+    return sidebarListItem('Product categorization', randChoice(PRODUCT_CATEGORIES));
 }
 
 function operationalCategorization() {
-    return sidebarListItem('Operational categorization', 'They could\'ve just googled it');
+    return sidebarListItem('Operational categorization', randChoice(OPERATIONAL_CATEGORIES));
 }
 
 function responders() {
