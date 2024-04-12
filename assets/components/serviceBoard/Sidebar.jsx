@@ -68,6 +68,22 @@ export default function Sidebar(props) {
         return badgeClass;
     }
 
+    const queueClass = (queueName) => {
+        if (queueName == props.activeQueue) {
+            return "sb-item justify-content-between active";
+        } else {
+            return "sb-item justify-content-between";
+        }
+    }
+
+    const handleChangeTickets = (queueName) => {
+        if (queueName == 'assigned' && props.activeQueue != 'assigned') {
+            props.loadRealTickets();
+        } else if (queueName != props.activeQueue) {
+            props.loadFauxTickets();
+        }
+    };
+
     return (
         <div className="service-board-sidebar">
             <div className="sb-header">
@@ -92,41 +108,96 @@ export default function Sidebar(props) {
                     <h5>Queues</h5>
                 </div>
                 <div className="section-body">
-                    <div className="sb-item d-flex justify-content-between">
+                    <div className={queueClass('open')}>
                         <div className="sb-item-left">
-                            <a className="sb-link" href="#">All open</a>
+                            <a
+                                className="sb-link"
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    props.setActiveQueue('open');
+                                    if (props.linkMode) {
+                                        window.location = serviceBoardUrl;
+                                    }
+                                    handleChangeTickets('open');
+                                }}
+                            >All open</a>
                         </div>
                         <div className="sb-item-right">
                             <span className={badgeClass(openCount)}>{openCount}</span>
                         </div>
                     </div>
-                    <div className="sb-item justify-content-between active">
+                    <div className={queueClass('assigned')}>
                         <div className="sb-item-left">
-                            <a className="sb-link" href="#">Assigned to me</a>
+                            <a
+                                className="sb-link"
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    props.setActiveQueue('assigned');
+                                    if (props.linkMode) {
+                                        window.location = serviceBoardUrl;
+                                    }
+                                    handleChangeTickets('assigned');
+                                }}
+                            >Assigned to me</a>
                         </div>
                         <div className="sb-item-right">
                             <span className={badgeClass(assignedCount)}>{assignedCount}</span>
                         </div>
                     </div>
-                    <div className="sb-item justify-content-between">
+                    <div className={queueClass('unassigned')}>
                         <div className="sb-item-left">
-                            <a className="sb-link" href="#">Unassigned</a>
+                            <a
+                                className="sb-link"
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    props.setActiveQueue('unassigned');
+                                    if (props.linkMode) {
+                                        window.location = serviceBoardUrl;
+                                    }
+                                    handleChangeTickets('unassigned');
+                                }}
+                            >Unassigned</a>
                         </div>
                         <div className="sb-item-right">
                             <span className={badgeClass(unassignedCount)}>{unassignedCount}</span>
                         </div>
                     </div>
-                    <div className="sb-item justify-content-between">
+                    <div className={queueClass('ignore')}>
                         <div className="sb-item-left">
-                            <a className="sb-link" href="#">Ignore forever</a>
+                            <a
+                                className="sb-link"
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    props.setActiveQueue('ignore');
+                                    if (props.linkMode) {
+                                        window.location = serviceBoardUrl;
+                                    }
+                                    handleChangeTickets('ignore');
+                                }}
+                            >Ignore forever</a>
                         </div>
                         <div className="sb-item-right">
                             <span className={badgeClass(ignoreCount)}>{ignoreCount}</span>
                         </div>
                     </div>
-                    <div className="sb-item justify-content-between">
+                    <div className={queueClass('closed')}>
                         <div className="sb-item-left">
-                            <a className="sb-link" href="#">All closed</a>
+                            <a
+                                className="sb-link"
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    props.setActiveQueue('closed');
+                                    if (props.linkMode) {
+                                        window.location = serviceBoardUrl;
+                                    }
+                                    handleChangeTickets('closed');
+                                }}
+                            >All closed</a>
                         </div>
                         <div className="sb-item-right">
                             <span className={badgeClass(closedCount)}>{closedCount}</span>

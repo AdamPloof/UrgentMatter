@@ -17,6 +17,18 @@ export default function QueueTable(props) {
         );
     }
 
+    const tableBody = () => {
+        if (props.activeQueue == 'closed') {
+            return (
+                <tr>
+                    <td colSpan={10}><p className="lead">Hmm, looks like there aren't any closed tickets. Now or ever.</p></td>
+                </tr>
+            );
+        } else {
+            return props.tickets.map((t, idx, arr) => ticketRow(t, idx, arr));
+        }
+    };
+
     return (
         <table className="table table-borderless queue-table">
             <thead>
@@ -41,7 +53,7 @@ export default function QueueTable(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.tickets.map((t, idx, arr) => ticketRow(t, idx, arr))}
+                {tableBody()}
             </tbody>
         </table>
     );

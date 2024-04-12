@@ -62,6 +62,7 @@ export default function Ticket(props) {
                     setShowEasterEgg={setShowEasterEgg}
                     setEasterEggTitle={setEasterEggTitle}
                     setEasterEggContent={setEasterEggContent}
+                    linkMode={true}
                 />
                 <div className="ticket-container">
                     <div className="ticket-content">

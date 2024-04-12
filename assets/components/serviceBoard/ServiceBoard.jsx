@@ -14,6 +14,7 @@ import EasterEggModal from "./EasterEggModal";
 
 export default function ServiceBoard(props) {
     const mode = useContext(ModeContext);
+    const [activeQueue, setActiveQueue] = useState('assigned');
     const [tickets, setTickets] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -70,8 +71,19 @@ export default function ServiceBoard(props) {
                 setEasterEggContent={setEasterEggContent}
             />
             <div className="service-board-layout">
-                <Sidebar ticketCount={tickets.length} />
+                <Sidebar
+                    activeQueue={activeQueue}
+                    setActiveQueue={setActiveQueue}
+                    ticketCount={tickets.length}
+                    setShowEasterEgg={setShowEasterEgg}
+                    setEasterEggTitle={setEasterEggTitle}
+                    setEasterEggContent={setEasterEggContent}
+                    linkMode={false}
+                    loadRealTickets={fetchTickets}
+                    loadFauxTickets={fetchFauxTickets}
+                />
                 <Queue
+                    activeQueue={activeQueue}
                     tickets={tickets}
                     loading={loading}
                     error={error}
