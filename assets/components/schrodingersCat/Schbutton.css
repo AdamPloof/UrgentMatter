@@ -1,0 +1,81 @@
+.schbutton { background-color: grey; width: 50px;}
+.boxicon { height: 32px; width: 32px; }
+
+.clickcat1 {animation-name: clickcat1; animation-duration: 1s; animation-iteration-count: 1;}
+.clickcat2 {animation-name: clickcat2; animation-duration: 1s; animation-iteration-count: 1;}
+.clickcat3 {animation-name: clickcat3; animation-duration: 1s; animation-iteration-count: 1;}
+.clickcat4 {animation-name: clickcat4; animation-duration: 1s; animation-iteration-count: 1;}
+.clickcat5 {animation-name: clickcat5; animation-duration: 1s; animation-iteration-count: 1;}
+
+.bg-red { background-color: red;}
+.bg-green { background-color: green;}
+.bg-grey { background-color: grey;}
+
+@keyframes squish {
+    0% {
+
+    }
+    25% {
+        transform: scale(.8);
+    }
+    75% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes clickcat1 {
+    0% {
+        background-color: grey;
+    }
+    100% {
+        background-color: red;
+    }
+}
+
+@keyframes clickcat2 {
+    0% {
+        background-color: grey;
+    }
+    100% {
+        background-color: green;
+    }
+}
+@keyframes clickcat3 {
+    0% {
+        background-color: grey;
+    }
+    100% {
+        background-color: black;
+    }
+}
+@keyframes clickcat4 {
+    0% {
+        background-color: grey;
+    }
+    25% {
+        background-color: black;
+    }
+    30% {
+        background-color: grey;
+    }
+    40% {
+        background-color: blue;
+    }
+    70% {
+        background-color: aqua;
+    }
+    100% {
+        background-color: grey;
+    }
+}
+@keyframes clickcat5 {
+    0% {
+        background-color: grey;
+    }
+    100% {
+        background-color: fuchsia;
+    }
+}

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ModeContext } from "../ModeContext";
+import SchButton from "../schrodingersCat/Schbutton";
 import { 
     SERVICE_BOARD,
     SERVICE_BOARD_DEMO,
@@ -457,7 +458,8 @@ export default function Nav(props) {
                                 return dropdowMenu(navItem.title, navItem.items);
                             })}
                             <li className="nav-item">
-                                <a className="nav-btn btn btn-info" href="#">Create</a>
+                                {/* <a className="nav-btn btn btn-info" href="#">Create</a> */}
+                                <SchButton />
                             </li>
                         </ul>
                     </div>
