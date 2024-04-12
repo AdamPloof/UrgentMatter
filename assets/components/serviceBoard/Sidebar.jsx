@@ -97,7 +97,7 @@ export default function Sidebar(props) {
                         <img width="40" src={`${ICONS}/logo_death_star.png`} alt="Death start logo"></img>
                     </div>
                     <div className="header-description">
-                        <a href={serviceBoardUrl}>
+                        <a href="https://adobe.ly/49ss7i8">
                             <span>Farewell project</span>
                         </a>
                     </div>
