@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Schbutton.css';
+import './SchButton.css';
 import { EASTER_EGGS } from '../../includes/paths';
 
 /** Courtesy of Tim Shaw */

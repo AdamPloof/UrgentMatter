@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ModeContext } from "../ModeContext";
-import SchButton from "../schrodingersCat/Schbutton";
+import SchButton from "../schrodingersCat/SchButton";
 import { 
     SERVICE_BOARD,
     SERVICE_BOARD_DEMO,
