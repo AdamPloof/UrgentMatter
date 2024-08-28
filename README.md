@@ -2,7 +2,7 @@
 
 > UrgentMatter, where work gets ~~done~~ *set to pending*.
 
-UrgentMatter is Jira clone of the highest caliber. Actually, it was a going away gag for a good friend who is intimately familar with the trials and tribulations of life in an IT department. This little ditty is packed full of inside jokes and digs at Microsoft.
+UrgentMatter is a Jira clone of the highest caliber. Actually, it was a going away gag for a good friend who is intimately familar with the trials and tribulations of life in an IT department. This little ditty is packed full of inside jokes and digs at Microsoft.
 
 ![Screenshot of urgent things in UrgentMatter](./images/UrgenMatter%20Screenshot.png)
 
